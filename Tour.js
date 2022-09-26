@@ -2,7 +2,7 @@ var viewer = new PhotoSphereViewer.Viewer({
   container: 'photosphere',
   loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
   defaultZoomLvl: 0,
-  touchmoveTwoFingers: true,
+  touchmoveTwoFingers: false,
   caption: 'Virtual Tour at Lebenya',
   //defaultLat: 0.1,
   moveSpeed: 1.3,
