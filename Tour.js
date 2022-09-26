@@ -294,7 +294,7 @@ virtualTour.setNodes([
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
-        data: { compass: 'rgba(153, 76, 0, 1)' }
+        data: { compass: 'rgba(255, 255, 153, 1)' }
       },
       { // Wall outline
         id: 'walls',
@@ -303,7 +303,7 @@ virtualTour.setNodes([
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
-        data: { compass: 'rgba(153, 76, 0, 1)' }
+        data: { compass: 'rgba(255, 255, 153, 1)' }
       }
 
     ],
