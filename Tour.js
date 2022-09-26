@@ -1,6 +1,3 @@
-const panelId = 'custom-panel';
-const buttonId = 'panel-button';
-
 var viewer = new PhotoSphereViewer.Viewer({
   container: 'photosphere',
   loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
