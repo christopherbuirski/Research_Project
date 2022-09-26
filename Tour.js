@@ -287,22 +287,22 @@ virtualTour.setNodes([
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
       },
 
-      {
+      { // Wall outline
         id: 'wall',
         polylineRad: [[5.787, -0.041], [5.805, -0.041], [5.82, -0.04], [5.84, -0.042], [5.852, -0.049], [5.854, -0.061], [5.854, -0.074], [5.843, -0.092], [5.827, -0.099], [5.799, -0.112], [5.761, -0.128], [5.638, -0.176], [5.504, -0.197]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
-        svgStyle: { stroke: 'rgba(153, 76, 0, 0.6)', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(153, 76, 0, 1)' }
       },
-      {
+      { // Wall outline
         id: 'walls',
         polylineRad: [[6.064, -0.069], [6.038, -0.054], [6.008, -0.041], [5.989, -0.021], [5.985, 0.003], [5.998, 0.025], [6.026, 0.03], [6.064, 0.035], [6.112, 0.038], [6.147, 0.035], [6.191, 0.026], [6.23, 0.01], [6.276, -0.003], [0.037, -0.007], [0.088, -0.004], [0.132, 0.009], [0.175, 0.009], [0.228, 0.005], [0.256, 0.003], [0.301, 0.003], [0.352, 0.005], [0.407, 0.01], [0.448, 0.003], [0.518, -0.017], [0.602, -0.045], [0.663, -0.056], [0.735, -0.073], [0.773, -0.091], [0.795, -0.108], [0.797, -0.136], [0.796, -0.166], [0.781, -0.194], [0.732, -0.226], [0.65, -0.241], [0.572, -0.238], [0.503, -0.238], [0.453, -0.247], [0.39, -0.256], [0.325, -0.264]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
-        svgStyle: { stroke: 'rgba(153, 76, 0, 0.6)', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(153, 76, 0, 1)' }
       }
 
@@ -358,27 +358,22 @@ virtualTour.setNodes([
         visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
       },
-      {
+      { // Wall outline 
         id: 'wall',
         polylineRad: [[4.433, -0.517], [5.158, -0.505], [5.559, -0.38], [5.832, -0.242], [5.87, -0.191], [5.876, -0.15], [5.862, -0.109], [5.843, -0.091], [5.814, -0.08], [5.765, -0.077], [5.742, -0.076]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
-        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
-        //svgStyle: { stroke: 'rgba(153, 76, 0, 0.6)', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(255, 255, 153, 1)' }
-        //data: { compass: 'rgba(153, 76, 0, 1)' }
       },
-      {
+      { // Wall outline
         id: 'walls',
-        //polylineRad: [[0.118, -0.248], [6.279, -0.175], [6.216, -0.121], [6.187, -0.083], [6.171, -0.041], [6.185, -0.004], [6.218, 0.014], [6.266, 0.022], [0.027, 0.025], [0.07, 0.027], [0.114, 0.022], [0.158, 0.011], [0.205, -0.008], [0.252, -0.032], [0.292, -0.043], [0.336, -0.054], [0.384, -0.054], [0.44, -0.043], [0.499, -0.044], [0.56, -0.043], [0.629, -0.034], [0.712, -0.036], [0.778, -0.03], [0.816, -0.026], [0.874, -0.013], [0.934, -0.011], [0.981, -0.02], [1.024, -0.029], [1.064, -0.043], [1.113, -0.065], [1.152, -0.07], [1.214, -0.076], [1.259, -0.079], [1.298, -0.084], [1.343, -0.095], [1.391, -0.115], [1.497, -0.154], [1.539, -0.178], [1.568, -0.201], [1.595, -0.245], [1.598, -0.309], [1.586, -0.371], [1.541, -0.473], [1.459, -0.593]],
         polylineRad: [[0.115, -0.251], [0.046, -0.217], [6.252, -0.185], [6.214, -0.15], [6.197, -0.121], [6.201, -0.084], [6.229, -0.054], [6.277, -0.037], [0.06, -0.035], [0.116, -0.037], [0.169, -0.043], [0.207, -0.057], [0.243, -0.069], [0.285, -0.076], [0.337, -0.077], [0.408, -0.076], [0.501, -0.063], [0.592, -0.054], [0.675, -0.052], [0.807, -0.049], [0.907, -0.052], [1.015, -0.066], [1.128, -0.068], [1.213, -0.081], [1.289, -0.095], [1.369, -0.115], [1.438, -0.139], [1.515, -0.171], [1.547, -0.203], [1.573, -0.26], [1.588, -0.313], [1.577, -0.372], [1.547, -0.429], [1.512, -0.495], [1.465, -0.56]],
-        //polylineRad: [[0.095, -0.234], [0.035, -0.202], [6.268, -0.17], [6.227, -0.136], [6.196, -0.105], [6.181, -0.073], [6.182, -0.024], [6.21, 0.002], [6.259, 0.019], [0.028, 0.021], [0.082, 0.021], [0.14, 0.011], [0.203, -0.017], [0.286, -0.055], [0.335, -0.06], [0.389, -0.058], [0.506, -0.049], [0.596, -0.046], [0.681, -0.042], [0.754, -0.041], [0.854, -0.041], [0.936, -0.047], [1.027, -0.055], [1.134, -0.069], [1.23, -0.084], [1.336, -0.108], [1.434, -0.14], [1.507, -0.172], [1.561, -0.221], [1.585, -0.277], [1.588, -0.324], [1.569, -0.388], [1.522, -0.44]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
-        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
-        //svgStyle: { stroke: 'rgba(153, 76, 0, 0.6)', strokeWidth: 5, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(153, 76, 0, 1)' }
       }
     ],
