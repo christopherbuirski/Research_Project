@@ -81,6 +81,13 @@ var viewer = new PhotoSphereViewer.Viewer({
   //navbar: ['autorotate', 'zoom', 'move', 'gallery', 'caption', 'markersList', 'fullscreen'], // addition of gallery button 
 });
 
+function help() {
+  viewer.overlay.show({
+    text: document.getElementById('help').innerHTML,
+    dissmisable: true,
+  });
+}
+
 function showOverlay() {
   viewer.overlay.show({
     //image: document.getElementById('overlay-icon').innerHTML,
@@ -91,12 +98,7 @@ function showOverlay() {
 }
 viewer.once('ready', showOverlay);
 
-function help() {
-  viewer.overlay.show({
-    text: document.getElementById('help').innerHTML,
-    dissmisable: true,
-  });
-}
+
 
 
 var virtualTour = viewer.getPlugin(PhotoSphereViewer.VirtualTourPlugin);
@@ -271,8 +273,10 @@ virtualTour.setNodes([
 
   { /* node 3 */
     id: '3',
-    panorama: 'https://i.ibb.co/sVGQZ3W/GS-0121.jpg', // panerama image link
-    thumbnail: 'https://i.ibb.co/0GSZxJs/GS-0121.jpg', // thumbnail image link
+    //panorama: 'https://i.ibb.co/sVGQZ3W/GS-0121.jpg', // panerama image link
+    panorama: location_3, // panerama image link
+    //thumbnail: 'https://i.ibb.co/0GSZxJs/GS-0121.jpg', // thumbnail image link
+    thumbnail: location_3_thumbnail, // thumbnail image link
     name: 'Location Three', // set the name of the panerama in the nodeslist 
     
     /*links: [
