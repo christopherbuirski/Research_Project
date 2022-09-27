@@ -1,9 +1,12 @@
+var buttonId = 'overlay-button';
+
 var viewer = new PhotoSphereViewer.Viewer({
   container: 'photosphere',
   loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
   defaultZoomLvl: 0,
   touchmoveTwoFingers: false,
   caption: 'Virtual Tour at Lebenya',
+  //description: 'this is a test',
   //defaultLat: 0.1,
   moveSpeed: 1.3,
   zoomSpeed: 1.2,
@@ -40,9 +43,32 @@ var viewer = new PhotoSphereViewer.Viewer({
       ],
     ],
   //navbar: 'autorotate zoom move caption markersList nodesList fullscreen', // set the navigation bar to use these buttons 
-  navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers','markersList', 'nodesList', 'fullscreen' ],   
+  
+  //navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers','markersList', 'nodesList', 'fullscreen' ], 
+  navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers','markersList', 'nodesList',
+    {
+      id: buttonId,
+      title: 'Show overlay',
+      content: 'Help',
+      onClick: showOverlay,
+    },
+     'fullscreen'], 
+  
+  //navbar: ['autorotate', 'zoom', 'move', 'description', 'markers', 'markersList', 'nodesList', 'fullscreen'],   
+  
   //navbar: ['autorotate', 'zoom', 'move', 'gallery', 'caption', 'markersList', 'fullscreen'], // addition of gallery button 
 });
+
+function showOverlay() {
+  viewer.overlay.show({
+    //image: document.getElementById('overlay-icon').innerHTML,
+    //text: document.querySelector('#help').innerHTML,
+    text: document.getElementById('help').innerHTML,
+    dissmisable: true,
+  });
+}
+
+viewer.once('ready', showOverlay);
 
 var virtualTour = viewer.getPlugin(PhotoSphereViewer.VirtualTourPlugin);
 
@@ -378,10 +404,12 @@ virtualTour.setNodes([
       }
     ],
   },
-
+  
   { /* node 5 */
     id: '5',
     panorama: 'https://i.ibb.co/c6FMQZR/GS-0123.jpg', // panerama image link
+    //panorama:'https://github.com/christopherbuirski/Research_Project/blob/main/Pictures/GS__0123.jpg?raw=true',
+    //panorama: 'https://github.com/christopherbuirski/Research_Project/blob/c3fdc64449d2f6df6464742a99fc7d645b151fd6/Pictures/GS__0123.jpg', 
     thumbnail: 'https://i.ibb.co/sKwkqNc/GS-0123.jpg', // thumbnail image link
     name: 'Location Five', // set the name of the panerama in the nodeslist 
     links: [
@@ -427,6 +455,24 @@ virtualTour.setNodes([
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
+      },
+      { // Wall outline 
+        id: 'wall',
+        polylineRad: [[5.324, -0.355], [5.283, -0.262], [5.273, -0.172], [5.326, -0.119], [5.399, -0.1], [5.546, -0.087], [5.703, -0.086], [5.897, -0.085], [6.057, -0.118], [6.198, -0.149], [0.053, -0.136], [0.172, -0.124], [0.346, -0.123], [0.512, -0.1], [0.657, -0.1], [0.781, -0.104], [0.92, -0.107], [1.046, -0.114], [1.303, -0.128], [1.532, -0.148], [1.71, -0.161], [1.883, -0.195], [2.063, -0.24], [2.256, -0.285], [2.409, -0.321], [2.557, -0.35]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Wall outline
+        id: 'walls',
+        polylineRad: [[3.595, -0.141], [3.722, -0.195], [3.884, -0.242], [4.065, -0.287], [4.222, -0.308], [4.41, -0.302], [4.616, -0.268], [4.814, -0.207], [5.08, -0.123]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
       }
     ],
   },
@@ -479,6 +525,24 @@ virtualTour.setNodes([
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
+      },
+      { // Wall outline 
+        id: 'wall',
+        polylineRad: [[3.587, -0.244], [3.849, -0.158], [4.097, -0.106], [4.284, -0.081], [4.479, -0.087], [4.859, -0.08], [5.074, -0.087], [5.425, -0.154], [5.896, -0.218], [0.073, -0.196], [0.551, -0.128], [0.71, -0.107], [0.882, -0.107], [1.079, -0.111], [1.388, -0.131], [1.659, -0.139], [1.993, -0.158], [2.284, -0.171], [2.485, -0.184], [2.681, -0.197]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Wall outline
+        id: 'walls',
+        polylineRad: [[3.198, -0.102], [3.268, -0.122], [3.317, -0.13], [3.382, -0.146], [3.448, -0.15], [3.54, -0.16]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
       }
     ],
   },
