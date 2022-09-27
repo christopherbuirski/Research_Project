@@ -1,4 +1,29 @@
 var buttonId = 'overlay-button';
+var location_1 = 'https://i.ibb.co/9VL47dZ/GS-0119.jpg';
+var location_1_thumbnail = 'https://i.ibb.co/cCH8jsY/GS-0119.jpg';
+var location_2 = 'https://i.ibb.co/SvF61hc/GS-0120.jpg';
+var location_2_thumbnail = 'https://i.ibb.co/tCVHN7z/GS-0120.jpg';
+var location_3 = 'https://i.ibb.co/sVGQZ3W/GS-0121.jpg';
+var location_3_thumbnail = 'https://i.ibb.co/0GSZxJs/GS-0121.jpg';
+var location_4 = 'https://i.ibb.co/FBYv6Yv/GS-0122.jpg';
+var location_4_thumbnail = 'https://i.ibb.co/30FX1FX/GS-0122.jpg';
+var location_5 = 'https://i.ibb.co/c6FMQZR/GS-0123.jpg';
+var location_5_thumbnail = 'https://i.ibb.co/sKwkqNc/GS-0123.jpg';
+var location_6 = 'https://i.ibb.co/tQ7LVjC/GS-0124.jpg';
+var location_6_thumbnail = 'https://i.ibb.co/2WDZGVK/GS-0124.jpg';
+var location_7 = 'https://i.ibb.co/n05kZrY/GS-0125.jpg';
+var location_7_thumbnail = 'https://i.ibb.co/RSVHZ2s/GS-0125.jpg';
+var location_8 = 'https://i.ibb.co/rQQKLQC/GS-0126.jpg';
+var location_8_thumbnail = 'https://i.ibb.co/6yycpy3/GS-0126.jpg';
+var location_9 = 'https://i.ibb.co/4T4Cq7F/GS-0134.jpg';
+var location_9_thumbnail = 'https://i.ibb.co/NjWfvsF/GS-0134.jpg';
+var location_10 = 'https://i.ibb.co/YLkTRWv/GS-0131.jpg';
+var location_10_thumbnail = 'https://i.ibb.co/Tg8qvTz/GS-0131.jpg';
+var location_11 = 'https://i.ibb.co/mT4D4pw/GS-0129.jpg';
+var location_11_thumbnail = 'https://i.ibb.co/4tpmpkG/GS-0129.jpg';
+
+var forwardMarker = 'https://i.ibb.co/rGmcJLj/Next.png';
+var backwardsMarker = 'https://i.ibb.co/YQkbQgm/Previous.png';
 
 var viewer = new PhotoSphereViewer.Viewer({
   container: 'photosphere',
@@ -49,13 +74,11 @@ var viewer = new PhotoSphereViewer.Viewer({
     {
       id: buttonId,
       title: 'Show overlay',
-      content: 'Help',
-      onClick: showOverlay,
+      content: 'Help', 
+      onClick: help,
     },
      'fullscreen'], 
-  
   //navbar: ['autorotate', 'zoom', 'move', 'description', 'markers', 'markersList', 'nodesList', 'fullscreen'],   
-  
   //navbar: ['autorotate', 'zoom', 'move', 'gallery', 'caption', 'markersList', 'fullscreen'], // addition of gallery button 
 });
 
@@ -63,6 +86,13 @@ function showOverlay() {
   viewer.overlay.show({
     //image: document.getElementById('overlay-icon').innerHTML,
     //text: document.querySelector('#help').innerHTML,
+    text: document.getElementById('start').innerHTML,
+    dissmisable: true,
+  });
+}
+
+function help() {
+  viewer.overlay.show({
     text: document.getElementById('help').innerHTML,
     dissmisable: true,
   });
@@ -75,8 +105,10 @@ var virtualTour = viewer.getPlugin(PhotoSphereViewer.VirtualTourPlugin);
 virtualTour.setNodes([
   { /* node 1 */
     id: '1',
-    panorama: 'https://i.ibb.co/9VL47dZ/GS-0119.jpg', // panerama image link 
-    thumbnail: 'https://i.ibb.co/cCH8jsY/GS-0119.jpg', // thumbnail image link
+    //panorama: 'https://i.ibb.co/9VL47dZ/GS-0119.jpg', // panerama image link 
+    panorama: location_1, // panerama image link 
+    //thumbnail: 'https://i.ibb.co/cCH8jsY/GS-0119.jpg', // thumbnail image link
+    thumbnail: location_1_thumbnail, // thumbnail image link
     name: 'Location One', // set the name of the panerama in the nodeslist 
 
     links: [
@@ -89,12 +121,12 @@ virtualTour.setNodes([
     /*links: [
       { // link to the next location, location 2
         nodeId: '2', longitude: 6.14, latitude: -0.217,
-        markerStyle: { imageLayer: 'https://i.ibb.co/rGmcJLj/Next.png' },
+        markerStyle: { imageLayer: forwardMarker },
       }
     ],*/
 
     markers: [
-      /*{ // circle that display popup to move forward
+      /*{ // circle that displaya a popup to move forward
         id: 'forward popup',
         ellipse: [30, 15],
         longitude: 6.14, latitude: -0.217,
@@ -124,10 +156,14 @@ virtualTour.setNodes([
       
       { // marker for the compass to indicate where the next location is
         id: 'forward not visible marker',
-        circle: 30, // size of the circle 
+          ellipse: [30, 15],
+        //circle: 30, // size of the circle 
         longitude: 6.14, latitude: -0.217, // long/ lat of the marker for the next location in the panarama
+          anchor: 'center center',
         hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
+        //visible: false, // set the marker to not be visible, only will show in the compass
+          svgStyle: { fill: 'rgba(255, 255, 255, 0)' },
+          tooltip: { content: 'Move Forward to here', position: 'top center', trigger: 'hover' },
         data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
       }
 
@@ -136,21 +172,22 @@ virtualTour.setNodes([
 
   { /* node 2 */ 
     id: '2',
-    panorama: 'https://i.ibb.co/SvF61hc/GS-0120.jpg', // panerama image link
-    thumbnail: 'https://i.ibb.co/tCVHN7z/GS-0120.jpg', // thumbnail image link
+    panorama: location_2, // panerama image link
+    thumbnail: location_2_thumbnail, // thumbnail image link
     name: 'Location Two', // set the name of the panerama in the nodeslist 
     
     /*links: [
       { // link to the previous location, location 1
         nodeId: '1', longitude: 2.857, latitude: -0.263,
-        markerStyle: { imageLayer: 'https://i.ibb.co/YQkbQgm/Previous.png' }
+        markerStyle: { imageLayer: backwardsMarker }
       }, 
       { // link to the next location, location 3
         nodeId: '3', longitude: 0.313, latitude: -0.127, 
-        markerStyle: { imageLayer: 'https://i.ibb.co/rGmcJLj/Next.png' }
+        markerStyle: { imageLayer: forwardMarker }
       } 
     ],*/
 
+    
     links: [
       { // link to the previous location, location 1
         nodeId: '1', longitude: 2.857, latitude: -0.263, name: 'Move Back to here',
@@ -208,18 +245,26 @@ virtualTour.setNodes([
       { // marker for the compass to indicate where the next location is
         id: 'forward not visible marker',
         circle: 30, // size of the circle 
+          //ellipse: [30, 15],
         longitude: 0.313, latitude: -0.127, // long/ lat of the marker for the next location in the panarama
+          //anchor: 'center center',
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
+          //svgStyle: { fill: 'rgba(255, 255, 255, 0)' },
+          //tooltip: { content: 'Move Forward to here', position: 'top center', trigger: 'hover' },
         data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
       },
 
       { // marker for the compass to indicate where the previous location is
         id: 'backward not visible marker',
         circle: 30,
+          //ellipse: [30, 15],
         longitude: 2.857, latitude: -0.263, // long/ lat of the marker for the previous location in the panarama
+          //anchor: 'center center',
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
+          //svgStyle: { fill: 'rgba(255, 255, 255, 0)' },
+          //tooltip: { content: 'Move back to here', position: 'top center', trigger: 'hover' },
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
       }
     ],
@@ -593,6 +638,24 @@ virtualTour.setNodes([
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
+      },
+      { // Wall outline 
+        id: 'wall',
+        polylineRad: [[3.587, -0.244], [3.849, -0.158], [4.097, -0.106], [4.284, -0.081], [4.479, -0.087], [4.859, -0.08], [5.074, -0.087], [5.425, -0.154], [5.896, -0.218], [0.073, -0.196], [0.551, -0.128], [0.71, -0.107], [0.882, -0.107], [1.079, -0.111], [1.388, -0.131], [1.659, -0.139], [1.993, -0.158], [2.284, -0.171], [2.485, -0.184], [2.681, -0.197]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Wall outline
+        id: 'walls',
+        polylineRad: [[3.198, -0.102], [3.268, -0.122], [3.317, -0.13], [3.382, -0.146], [3.448, -0.15], [3.54, -0.16]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
       }
     ],
   },
