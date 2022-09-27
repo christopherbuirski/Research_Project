@@ -90,16 +90,21 @@ function help() {
 
 function showOverlay() {
   viewer.overlay.show({
-    //image: document.getElementById('overlay-icon').innerHTML,
-    //text: document.querySelector('#help').innerHTML,
+    id: 'start',
     text: document.getElementById('start').innerHTML,
     dissmisable: true,
   });
 }
 viewer.once('ready', showOverlay);
 
+function notification() {
+  viewer.notification.show({
+    id: 'notification',
+    content: 'Click on the Help icon for Navigation Instructions (Click to dismiss)',
+  })
+};
 
-
+viewer.once('ready', notification);
 
 var virtualTour = viewer.getPlugin(PhotoSphereViewer.VirtualTourPlugin);
 
