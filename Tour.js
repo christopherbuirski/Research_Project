@@ -95,7 +95,8 @@ function showOverlay() {
     dissmisable: true,
   });
 }
-viewer.once('ready', showOverlay);
+
+//viewer.once('ready', showOverlay);
 
 function notification() {
   viewer.notification.show({
@@ -104,7 +105,9 @@ function notification() {
   })
 };
 
-viewer.once('ready', notification);
+viewer.once('ready', showOverlay);
+//viewer.once('ready', notification);
+//notification();
 
 var virtualTour = viewer.getPlugin(PhotoSphereViewer.VirtualTourPlugin);
 
