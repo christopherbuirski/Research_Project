@@ -31,7 +31,6 @@ var viewer = new PhotoSphereViewer.Viewer({
   defaultZoomLvl: 0,
   touchmoveTwoFingers: false,
   caption: 'Virtual Tour at Lebenya',
-  //description: 'this is a test',
   //defaultLat: 0.1,
   moveSpeed: 1.3,
   zoomSpeed: 1.2,
@@ -90,6 +89,7 @@ function showOverlay() {
     dissmisable: true,
   });
 }
+viewer.once('ready', showOverlay);
 
 function help() {
   viewer.overlay.show({
@@ -98,7 +98,6 @@ function help() {
   });
 }
 
-viewer.once('ready', showOverlay);
 
 var virtualTour = viewer.getPlugin(PhotoSphereViewer.VirtualTourPlugin);
 
