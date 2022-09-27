@@ -407,9 +407,7 @@ virtualTour.setNodes([
   
   { /* node 5 */
     id: '5',
-    panorama: 'https://i.ibb.co/c6FMQZR/GS-0123.jpg', // panerama image link
-    //panorama:'https://github.com/christopherbuirski/Research_Project/blob/main/Pictures/GS__0123.jpg?raw=true',
-    //panorama: 'https://github.com/christopherbuirski/Research_Project/blob/c3fdc64449d2f6df6464742a99fc7d645b151fd6/Pictures/GS__0123.jpg', 
+    panorama: 'https://i.ibb.co/c6FMQZR/GS-0123.jpg', // panerama image link 
     thumbnail: 'https://i.ibb.co/sKwkqNc/GS-0123.jpg', // thumbnail image link
     name: 'Location Five', // set the name of the panerama in the nodeslist 
     links: [
