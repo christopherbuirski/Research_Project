@@ -71,9 +71,9 @@ var viewer = new PhotoSphereViewer.Viewer({
   navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers', 'markersList', 'nodesList',
       {
         id: mapButton,
-        title: 'Show overlay',
+        //title: 'Show overlay',
         content: <a href="https://christopherbuirski.github.io/Research_Project/Map.html"> Location Map</a>,
-        onClick: map,
+        //onClick: map,
       },
       {
         id: buttonId,
