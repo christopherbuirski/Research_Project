@@ -1,4 +1,5 @@
 var buttonId = 'overlay-button';
+var mapButton = 'map';
 var location_1 = 'https://i.ibb.co/9VL47dZ/GS-0119.jpg';
 var location_1_thumbnail = 'https://i.ibb.co/cCH8jsY/GS-0119.jpg';
 var location_2 = 'https://i.ibb.co/SvF61hc/GS-0120.jpg';
@@ -54,31 +55,33 @@ var viewer = new PhotoSphereViewer.Viewer({
             zoom: [0.5, 1] // the marker is twice smaller on the minimum zoom level
           },
         }
-        
-        /*markerStyle: {
-          html: null, // remove the default arrow node link
-          width: 120,
-          height: 120,
-          orientation: 'horizontal',
-          anchor: 'center center',
-        }*/
-
         }
       ],
-    ],
-  //navbar: 'autorotate zoom move caption markersList nodesList fullscreen', // set the navigation bar to use these buttons 
-  
+    ],  
   //navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers','markersList', 'nodesList', 'fullscreen' ], 
-  navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers','markersList', 'nodesList',
+  /*navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers','markersList', 'nodesList',
     {
       id: buttonId,
       title: 'Show overlay',
       content: 'Help', 
       onClick: help,
     },
-     'fullscreen'], 
-  //navbar: ['autorotate', 'zoom', 'move', 'description', 'markers', 'markersList', 'nodesList', 'fullscreen'],   
-  //navbar: ['autorotate', 'zoom', 'move', 'gallery', 'caption', 'markersList', 'fullscreen'], // addition of gallery button 
+     'fullscreen'],*/
+  
+  navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers', 'markersList', 'nodesList',
+      {
+        id: mapButton,
+        title: 'Show overlay',
+        content: <a href="https://christopherbuirski.github.io/Research_Project/Map.html"> Location Map</a>,
+        onClick: map,
+      },
+      {
+        id: buttonId,
+        title: 'Show overlay',
+        content: 'Help',
+        onClick: help,
+      },'fullscreen'
+  ]
 });
 
 function help() {
@@ -87,6 +90,10 @@ function help() {
     dissmisable: true,
   });
 }
+
+/*function map() {
+  <a href="https://christopherbuirski.github.io/Research_Project/Tour.html"></a>
+}*/
 
 function showOverlay() {
   viewer.overlay.show({
