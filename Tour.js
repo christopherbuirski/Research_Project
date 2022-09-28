@@ -74,7 +74,7 @@ var viewer = new PhotoSphereViewer.Viewer({
         title: 'map',
         //content: <a href="https://christopherbuirski.github.io/Research_Project/Map.html"> Location Map</a>,
         content: 'Location Map',
-        onClick: map,
+        //onClick: map,
       },*/
       {
         id: buttonId,
