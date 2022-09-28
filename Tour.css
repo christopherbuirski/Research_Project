@@ -29,3 +29,16 @@ ol.center li {
     font-size: 70%;
     /*font-family: Tahoma;*/
 }
+
+a:link {
+    color: rgba(255, 255, 255, 0.7);
+    /*background-color: transparent;*/
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgba(255, 255, 255, 0.7);;
+
+    text-decoration: none;
+}
+

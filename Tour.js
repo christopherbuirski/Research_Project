@@ -1,5 +1,6 @@
 var buttonId = 'overlay-button';
 var mapButton = 'map';
+var informationButton = 'map';
 
 var location_1 = 'https://i.ibb.co/9VL47dZ/GS-0119.jpg';
 var location_1_thumbnail = 'https://i.ibb.co/cCH8jsY/GS-0119.jpg';
@@ -66,20 +67,23 @@ var viewer = new PhotoSphereViewer.Viewer({
     },
      'fullscreen'],*/
   
-  navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers', 'markersList', 'nodesList',
-      /*{
-        id: mapButton,
-        title: 'map',
-        //content: <a href="https://christopherbuirski.github.io/Research_Project/Map.html"> Location Map</a>,
-        content: 'Location Map',
-        //onClick: map,
-      },*/
-      {
-        id: buttonId,
-        title: 'Show overlay',
-        content: 'Help',
-        onClick: help,
-      },'fullscreen'
+  navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers', 'markersList', 
+    {
+      id: informationButton,
+      title: 'Project Information',
+      content: document.getElementById('information').innerHTML,
+    },   
+    {
+      id: mapButton,
+      title: 'Location Map',
+      content: document.getElementById('map').innerHTML,
+    },
+    {
+      id: buttonId,
+      title: 'Help',
+      content: 'Help',
+      onClick: help,
+    },'nodesList','fullscreen'
   ]
 });
 
@@ -90,15 +94,6 @@ function help() {
   });
 }
 
-/*function map() {
-  viewer.overlay.show({
-    text: document.getElementById('map').innerHTML,
-    dissmisable: true,
-  });
-  //<a href="https://christopherbuirski.github.io/Research_Project/Map.html"> Location Map</a>
-  //<a href="https://christopherbuirski.github.io/Research_Project/Tour.html"></a>
-}*/
-
 function showOverlay() {
   viewer.overlay.show({
     id: 'start',
@@ -106,15 +101,6 @@ function showOverlay() {
     dissmisable: true,
   });
 }
-
-//viewer.once('ready', showOverlay);
-
-/*function notification() {
-  viewer.notification.show({
-    id: 'notification',
-    content: 'Click on the Help icon for Navigation Instructions (Click to dismiss)',
-  })
-};*/
 
 viewer.once('ready', showOverlay);
 
@@ -169,7 +155,7 @@ virtualTour.setNodes([
     panorama: location_2, // panerama image link
     thumbnail: location_2_thumbnail, // thumbnail image link
     name: 'Location Two', // set the name of the panerama in the nodeslist 
-    caption: 'Location 2', // set the caption
+    caption: 'Location Two', // set the caption
 
     links: [
       { // link to the previous location, location 1
@@ -184,29 +170,6 @@ virtualTour.setNodes([
     ],
 
     markers: [
-      
-      /*{ // circle that display popup to move forward
-        id: 'forward popup',
-        ellipse: [30, 15],
-        longitude: 0.313, latitude: -0.127,
-        anchor: 'center center',
-        hideList: true, // remove the marker from the markers list
-        svgStyle: { fill: 'rgba(255, 255, 255, 0)' },
-        tooltip: { content: 'Move Forward to here', position: 'top center', trigger: 'hover' },
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display path on compass
-      },
-
-      { // circle that display popup to move back
-        id: 'back popup',
-        ellipse: [30, 15],
-        longitude: 2.857, latitude: -0.263,
-        anchor: 'center center',
-        hideList: true, // remove the marker from the markers list
-        svgStyle: { fill: 'rgba(255, 255, 255, 0)' },
-        tooltip: { content: 'Move Back to here', position: 'top center', trigger: 'hover' },
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },*/
-
       { // create a path between from the indicator to the previous location to where you are standing and then to the next locator circle
         id: 'path',
         polylineRad: [[2.857, -0.263], [5.494, -1.5], [0.313, -0.127]], // path coodinates using long/ lat
@@ -215,7 +178,6 @@ virtualTour.setNodes([
         style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
         data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
       },
-
       { // circle indicating where you are standing in the panarama
         id: 'standing here',
         circle: 30, // size of the circle 
@@ -224,30 +186,20 @@ virtualTour.setNodes([
         tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
         svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle 
       },
-
       { // marker for the compass to indicate where the next location is
         id: 'forward not visible marker',
         circle: 30, // size of the circle 
-          //ellipse: [30, 15],
         longitude: 0.313, latitude: -0.127, // long/ lat of the marker for the next location in the panarama
-          //anchor: 'center center',
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
-          //svgStyle: { fill: 'rgba(255, 255, 255, 0)' },
-          //tooltip: { content: 'Move Forward to here', position: 'top center', trigger: 'hover' },
         data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
       },
-
       { // marker for the compass to indicate where the previous location is
         id: 'backward not visible marker',
         circle: 30,
-          //ellipse: [30, 15],
         longitude: 2.857, latitude: -0.263, // long/ lat of the marker for the previous location in the panarama
-          //anchor: 'center center',
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
-          //svgStyle: { fill: 'rgba(255, 255, 255, 0)' },
-          //tooltip: { content: 'Move back to here', position: 'top center', trigger: 'hover' },
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
       }
     ],
@@ -255,23 +207,10 @@ virtualTour.setNodes([
 
   { /* node 3 */
     id: '3',
-    //panorama: 'https://i.ibb.co/sVGQZ3W/GS-0121.jpg', // panerama image link
     panorama: location_3, // panerama image link
-    //thumbnail: 'https://i.ibb.co/0GSZxJs/GS-0121.jpg', // thumbnail image link
     thumbnail: location_3_thumbnail, // thumbnail image link
-    name: 'Location Three', // set the name of the panerama in the nodeslist 
-    
-    /*links: [
-      { // link to the previous location, location 2
-        nodeId: '2', longitude: 3.678, latitude: -0.214,
-        markerStyle: { imageLayer: 'https://i.ibb.co/YQkbQgm/Previous.png' } 
-      },
-
-      { // link to the next location, location 4
-        nodeId: '4', longitude: 6.199, latitude: -0.132,
-        markerStyle: { imageLayer: 'https://i.ibb.co/rGmcJLj/Next.png' } 
-      } 
-    ],*/
+    name: 'Location Three', // set the name of the panerama in the nodeslist
+    caption: 'Location Three', // set the caption 
 
     links: [
       { // link to the previous location, location 2
@@ -285,30 +224,7 @@ virtualTour.setNodes([
       }
     ],
 
-    markers: [
-      
-      /*{ // circle that display popup to move forward
-        id: 'forward popup',
-        ellipse: [30, 15],
-        longitude: 6.199, latitude: -0.132,
-        anchor: 'center center',
-        hideList: true, // remove the marker from the markers list
-        svgStyle: { fill: 'rgba(255, 255, 255, 0)' },
-        tooltip: { content: 'Move Forward to here', position: 'top center', trigger: 'hover' },
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display path on compass
-      },
-
-      { // circle that display popup to move back
-        id: 'back popup',
-        ellipse: [30, 15],
-        longitude: 3.678, latitude: -0.214,
-        anchor: 'center center',
-        hideList: true, // remove the marker from the markers list
-        svgStyle: { fill: 'rgba(255, 255, 255, 0)' },
-        tooltip: { content: 'Move Back to here', position: 'top center', trigger: 'hover' },
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },*/
-      
+    markers: [  
       { // create a path between from the indicator to the previous location to where you are standing and then to the next locator circle
         id: 'path',
         polylineRad: [[3.678, -0.214], [5.494, -1.5], [6.199, -0.132]], // path coodinates using long/ lat
@@ -325,7 +241,6 @@ virtualTour.setNodes([
         tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
         svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle 
       },
-
       { // marker for the compass to indicate where the next location is
         id: 'forward not visible marker',
         circle: 30, // size of the circle 
@@ -342,7 +257,6 @@ virtualTour.setNodes([
         visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
       },
-
       { // Wall outline
         id: 'wall',
         polylineRad: [[5.787, -0.041], [5.805, -0.041], [5.82, -0.04], [5.84, -0.042], [5.852, -0.049], [5.854, -0.061], [5.854, -0.074], [5.843, -0.092], [5.827, -0.099], [5.799, -0.112], [5.761, -0.128], [5.638, -0.176], [5.504, -0.197]],
@@ -361,15 +275,16 @@ virtualTour.setNodes([
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(255, 255, 153, 1)' }
       }
-
     ],
   },
 
   { /* node 4 */
     id: '4',
-    panorama: 'https://i.ibb.co/FBYv6Yv/GS-0122.jpg', // panerama image link
-    thumbnail: 'https://i.ibb.co/30FX1FX/GS-0122.jpg', // thumbnail image link
+    panorama: location_4, // panerama image link
+    thumbnail: location_4_thumbnail, // thumbnail image link
     name: 'Location Four', // set the name of the panerama in the nodeslist 
+    caption: 'Location Four', // set the caption
+
     links: [
       { // link to the previous location, location 3
         nodeId: '3', longitude: 3.401, latitude: -0.405, name: 'Move Back to here', 
@@ -437,9 +352,11 @@ virtualTour.setNodes([
   
   { /* node 5 */
     id: '5',
-    panorama: 'https://i.ibb.co/c6FMQZR/GS-0123.jpg', // panerama image link 
-    thumbnail: 'https://i.ibb.co/sKwkqNc/GS-0123.jpg', // thumbnail image link
+    panorama: location_5, // panerama image link 
+    thumbnail: location_5_thumbnail, // thumbnail image link
     name: 'Location Five', // set the name of the panerama in the nodeslist 
+    caption: 'Location Five', // set the caption
+    
     links: [
       { // link to the previous location, location 4
         nodeId: '4', longitude: 3.14, latitude: -0.305, name: 'Move Back to here', 
@@ -507,9 +424,11 @@ virtualTour.setNodes([
 
   { /* node 6 */
     id: '6',
-    panorama: 'https://i.ibb.co/tQ7LVjC/GS-0124.jpg', // panerama image link
-    thumbnail: 'https://i.ibb.co/2WDZGVK/GS-0124.jpg', // thumbnail image link
+    panorama: location_6, // panerama image link
+    thumbnail: location_6_thumbnail, // thumbnail image link
     name: 'Location Six', // set the name of the panerama in the nodeslist 
+    caption: 'Location Six', // set the caption
+
     links: [
       { // link to the previous location, location 5
         nodeId: '5', longitude: 3.013, latitude: -0.326, name: 'Move Back to here',
@@ -577,9 +496,11 @@ virtualTour.setNodes([
 
   { /* node 7 */
     id: '7',
-    panorama: 'https://i.ibb.co/n05kZrY/GS-0125.jpg', // panerama image link
-    thumbnail: 'https://i.ibb.co/RSVHZ2s/GS-0125.jpg', // thumbnail image link
+    panorama: location_7, // panerama image link
+    thumbnail: location_7_thumbnail, // thumbnail image link
     name: 'Location Seven', // set the name of the panerama in the nodeslist 
+    caption: 'Location Seven', // set the caption
+
     links: [
       { // link to the previous location, location 6
         nodeId: '6', longitude: 3.101, latitude: -0.344, name: 'Move Back to here',
@@ -647,9 +568,11 @@ virtualTour.setNodes([
 
   { /* node 8 */
     id: '8',
-    panorama: 'https://i.ibb.co/rQQKLQC/GS-0126.jpg', // panerama image link
-    thumbnail: 'https://i.ibb.co/6yycpy3/GS-0126.jpg', // thumbnail image link
+    panorama: location_8, // panerama image link
+    thumbnail: location_8_thumbnail, // thumbnail image link
     name: 'Location Eight', // set the name of the panerama in the nodeslist 
+    caption: 'Location Eight', // set the caption
+
     links: [
       { // link to the previous location, location 7
         nodeId: '7', longitude: 4.483, latitude: -0.193, name: 'Move Back to here',
@@ -700,9 +623,11 @@ virtualTour.setNodes([
 
   { /* node 9 */
     id: '9',
-    panorama: 'https://i.ibb.co/4T4Cq7F/GS-0134.jpg', // panerama image link
-    thumbnail: 'https://i.ibb.co/NjWfvsF/GS-0134.jpg', // thumbnail image link
+    panorama: location_9, // panerama image link
+    thumbnail: location_9_thumbnail, // thumbnail image link
     name: 'Location Nine', // set the name of the panerama in the nodeslist 
+    caption: 'Location Nine', // set the caption
+
     links: [
       { // link to the previous location, location 8
         nodeId: '8', longitude: 0.873, latitude: -0.143, name: 'Move Back to here',
@@ -753,9 +678,11 @@ virtualTour.setNodes([
 
   { /* node 10 */
     id: '10',
-    panorama: 'https://i.ibb.co/YLkTRWv/GS-0131.jpg', // panerama image link
-    thumbnail: 'https://i.ibb.co/Tg8qvTz/GS-0131.jpg', // thumbnail image link
+    panorama: location_10, // panerama image link
+    thumbnail: location_10_thumbnail, // thumbnail image link
     name: 'Location Ten', // set the name of the panerama in the nodeslist 
+    caption: 'Location Ten', // set the caption
+
     links: [
       { // link to the previous location, location 9
         nodeId: '9', longitude: 5.034, latitude: -0.184, name: 'Move Back to here',
@@ -806,9 +733,11 @@ virtualTour.setNodes([
 
   { /* node 11 */
     id: '11',
-    panorama: 'https://i.ibb.co/mT4D4pw/GS-0129.jpg', // panerama image link
-    thumbnail: 'https://i.ibb.co/4tpmpkG/GS-0129.jpg', // thumbnail image link
+    panorama: location_11, // panerama image link
+    thumbnail: location_11_thumbnail, // thumbnail image link
     name: 'Location Eleven', // set the name of the panerama in the nodeslist 
+    caption: 'Location Eleven', // set the caption
+
     links: [
       { // link to the previous location, location 10
         nodeId: '10', longitude: 4.948, latitude: -0.141, name: 'Move Back to here',
