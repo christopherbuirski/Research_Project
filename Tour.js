@@ -111,27 +111,24 @@ function showOverlay() {
 
 //viewer.once('ready', showOverlay);
 
-function notification() {
+/*function notification() {
   viewer.notification.show({
     id: 'notification',
     content: 'Click on the Help icon for Navigation Instructions (Click to dismiss)',
   })
-};
+};*/
 
 viewer.once('ready', showOverlay);
-//viewer.once('ready', notification);
-//notification();
 
 var virtualTour = viewer.getPlugin(PhotoSphereViewer.VirtualTourPlugin);
 
 virtualTour.setNodes([
   { /* node 1 */
     id: '1',
-    //panorama: 'https://i.ibb.co/9VL47dZ/GS-0119.jpg', // panerama image link 
     panorama: location_1, // panerama image link 
-    //thumbnail: 'https://i.ibb.co/cCH8jsY/GS-0119.jpg', // thumbnail image link
     thumbnail: location_1_thumbnail, // thumbnail image link
     name: 'Location One', // set the name of the panerama in the nodeslist 
+    caption: 'Location One', // set the caption
 
     links: [
       { // link to the next location, location 2
@@ -139,13 +136,6 @@ virtualTour.setNodes([
         markerStyle: { svgStyle: { fill: 'rgba(0, 255, 0, 0.4)', stroke: 'rgba(0, 255, 0, 0.4)', strokeWidth: 5 } } 
       } 
     ],
-
-    /*links: [
-      { // link to the next location, location 2
-        nodeId: '2', longitude: 6.14, latitude: -0.217,
-        markerStyle: { imageLayer: forwardMarker },
-      }
-    ],*/
 
     markers: [
       /*{ // circle that displaya a popup to move forward
@@ -178,14 +168,10 @@ virtualTour.setNodes([
       
       { // marker for the compass to indicate where the next location is
         id: 'forward not visible marker',
-          ellipse: [30, 15],
-        //circle: 30, // size of the circle 
+        circle: 30, // size of the circle 
         longitude: 6.14, latitude: -0.217, // long/ lat of the marker for the next location in the panarama
-          anchor: 'center center',
         hideList: true, // remove the marker from the markers list
-        //visible: false, // set the marker to not be visible, only will show in the compass
-          svgStyle: { fill: 'rgba(255, 255, 255, 0)' },
-          tooltip: { content: 'Move Forward to here', position: 'top center', trigger: 'hover' },
+        visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
       }
 
