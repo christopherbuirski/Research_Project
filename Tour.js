@@ -69,12 +69,13 @@ var viewer = new PhotoSphereViewer.Viewer({
      'fullscreen'],*/
   
   navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers', 'markersList', 'nodesList',
-      {
+      /*{
         id: mapButton,
-        //title: 'Show overlay',
-        content: <a href="https://christopherbuirski.github.io/Research_Project/Map.html"> Location Map</a>,
-        //onClick: map,
-      },
+        title: 'map',
+        //content: <a href="https://christopherbuirski.github.io/Research_Project/Map.html"> Location Map</a>,
+        content: 'Location Map',
+        onClick: map,
+      },*/
       {
         id: buttonId,
         title: 'Show overlay',
@@ -92,7 +93,12 @@ function help() {
 }
 
 /*function map() {
-  <a href="https://christopherbuirski.github.io/Research_Project/Tour.html"></a>
+  viewer.overlay.show({
+    text: document.getElementById('map').innerHTML,
+    dissmisable: true,
+  });
+  //<a href="https://christopherbuirski.github.io/Research_Project/Map.html"> Location Map</a>
+  //<a href="https://christopherbuirski.github.io/Research_Project/Tour.html"></a>
 }*/
 
 function showOverlay() {
