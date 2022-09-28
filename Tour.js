@@ -81,7 +81,8 @@ var viewer = new PhotoSphereViewer.Viewer({
     {
       id: buttonId,
       title: 'Help',
-      content: 'Help',
+      //content: 'Help',
+      content: document.getElementById('help1').innerHTML,
       onClick: help,
     },'nodesList','fullscreen'
   ]
