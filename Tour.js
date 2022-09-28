@@ -1,5 +1,6 @@
 var buttonId = 'overlay-button';
 var mapButton = 'map';
+
 var location_1 = 'https://i.ibb.co/9VL47dZ/GS-0119.jpg';
 var location_1_thumbnail = 'https://i.ibb.co/cCH8jsY/GS-0119.jpg';
 var location_2 = 'https://i.ibb.co/SvF61hc/GS-0120.jpg';
@@ -23,15 +24,12 @@ var location_10_thumbnail = 'https://i.ibb.co/Tg8qvTz/GS-0131.jpg';
 var location_11 = 'https://i.ibb.co/mT4D4pw/GS-0129.jpg';
 var location_11_thumbnail = 'https://i.ibb.co/4tpmpkG/GS-0129.jpg';
 
-var forwardMarker = 'https://i.ibb.co/rGmcJLj/Next.png';
-var backwardsMarker = 'https://i.ibb.co/YQkbQgm/Previous.png';
-
 var viewer = new PhotoSphereViewer.Viewer({
   container: 'photosphere',
   loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
   defaultZoomLvl: 0,
   touchmoveTwoFingers: false,
-  caption: 'Virtual Tour at Lebenya',
+  //caption: 'Virtual Tour at Lebenya',
   //defaultLat: 0.1,
   moveSpeed: 1.3,
   zoomSpeed: 1.2,
@@ -138,17 +136,6 @@ virtualTour.setNodes([
     ],
 
     markers: [
-      /*{ // circle that displaya a popup to move forward
-        id: 'forward popup',
-        ellipse: [30, 15],
-        longitude: 6.14, latitude: -0.217,
-        anchor: 'center center',
-        hideList: true, // remove the marker from the markers list
-        svgStyle: { fill: 'rgba(255, 255, 255, 0)' },
-        tooltip: { content: 'Move Forward to here', position: 'top center', trigger: 'hover' },
-        data: { compass: 'rgba(0, 255, 0, 1)' }
-      },*/
-      
       { // create a path between where you are standing to the next locator circle
         id: 'path',
         polylineRad: [[5.494, -1.5], [6.14, -0.217]], // path coodinates using long/ lat
@@ -165,7 +152,6 @@ virtualTour.setNodes([
         tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
         svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' } // set the style of the circle 
       },
-      
       { // marker for the compass to indicate where the next location is
         id: 'forward not visible marker',
         circle: 30, // size of the circle 
@@ -183,19 +169,8 @@ virtualTour.setNodes([
     panorama: location_2, // panerama image link
     thumbnail: location_2_thumbnail, // thumbnail image link
     name: 'Location Two', // set the name of the panerama in the nodeslist 
-    
-    /*links: [
-      { // link to the previous location, location 1
-        nodeId: '1', longitude: 2.857, latitude: -0.263,
-        markerStyle: { imageLayer: backwardsMarker }
-      }, 
-      { // link to the next location, location 3
-        nodeId: '3', longitude: 0.313, latitude: -0.127, 
-        markerStyle: { imageLayer: forwardMarker }
-      } 
-    ],*/
+    caption: 'Location 2', // set the caption
 
-    
     links: [
       { // link to the previous location, location 1
         nodeId: '1', longitude: 2.857, latitude: -0.263, name: 'Move Back to here',
