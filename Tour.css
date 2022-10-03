@@ -56,6 +56,14 @@ a:active {
     text-decoration: underline;
 }
 
+li.main {
+    margin: 10px 0;
+}
+
+li.main1 {
+    margin-top: 10px;
+}
+
 /*
 .help1:hover {
     color: rgba(255, 255, 255, 1);
