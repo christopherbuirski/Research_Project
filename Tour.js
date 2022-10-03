@@ -70,18 +70,17 @@ var viewer = new PhotoSphereViewer.Viewer({
   navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers', 'markersList', 
     {
       id: informationButton,
-      title: 'Project Information',
+      title: 'Click here to view the Project Information',
       content: document.getElementById('information').innerHTML,
     },   
     {
       id: mapButton,
-      title: 'Location Map',
+      title: 'Click here to view the Location Map',
       content: document.getElementById('map').innerHTML,
     },
     {
       id: buttonId,
-      title: 'Help',
-      //content: 'Help',
+      title: 'Click here to view the Instructions',
       content: document.getElementById('help1').innerHTML,
       onClick: help,
     },'nodesList','fullscreen'
@@ -548,16 +547,7 @@ virtualTour.setNodes([
       },
       { // Wall outline 
         id: 'wall',
-        polylineRad: [[3.587, -0.244], [3.849, -0.158], [4.097, -0.106], [4.284, -0.081], [4.479, -0.087], [4.859, -0.08], [5.074, -0.087], [5.425, -0.154], [5.896, -0.218], [0.073, -0.196], [0.551, -0.128], [0.71, -0.107], [0.882, -0.107], [1.079, -0.111], [1.388, -0.131], [1.659, -0.139], [1.993, -0.158], [2.284, -0.171], [2.485, -0.184], [2.681, -0.197]],
-        hideList: true, // remove the marker from the markers list
-        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
-        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
-        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
-        data: { compass: 'rgba(255, 255, 153, 1)' }
-      },
-      { // Wall outline
-        id: 'walls',
-        polylineRad: [[3.198, -0.102], [3.268, -0.122], [3.317, -0.13], [3.382, -0.146], [3.448, -0.15], [3.54, -0.16]],
+        polylineRad: [[2.495, -0.106], [2.563, -0.117], [2.626, -0.12], [2.688, -0.121], [2.753, -0.122], [2.836, -0.106], [2.926, -0.089], [3.031, -0.072], [3.135, -0.068], [3.231, -0.067], [3.337, -0.073], [3.435, -0.08], [3.55, -0.098], [3.673, -0.125], [3.795, -0.134], [3.905, -0.14], [4.093, -0.152], [4.249, -0.167], [4.472, -0.188], [4.692, -0.198], [4.908, -0.207], [5.125, -0.201], [5.317, -0.204], [5.549, -0.206], [5.796, -0.205], [5.958, -0.219], [6.098, -0.23], [0.022, -0.229], [0.276, -0.234], [0.525, -0.229], [0.727, -0.236], [0.902, -0.228], [1.077, -0.209], [1.196, -0.198], [1.293, -0.194], [1.402, -0.185], [1.45, -0.18]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
@@ -617,6 +607,15 @@ virtualTour.setNodes([
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
+      },
+      { // Wall outline 
+        id: 'wall',
+        polylineRad: [[1.387, -0.418], [1.083, -0.455], [0.838, -0.473], [0.636, -0.481], [0.418, -0.49], [0.293, -0.489], [6.119, -0.393], [5.796, -0.283], [5.583, -0.197], [5.394, -0.157], [5.253, -0.12], [5.059, -0.086], [4.898, -0.055], [4.802, -0.047], [4.739, -0.043], [4.605, -0.038], [4.515, -0.044], [4.367, -0.046], [4.228, -0.049], [4.101, -0.055], [3.995, -0.065], [3.923, -0.069], [3.798, -0.07], [3.708, -0.059], [3.591, -0.046], [3.467, -0.045], [3.373, -0.049], [3.261, -0.071], [3.147, -0.087], [3.046, -0.101], [2.976, -0.1]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
@@ -672,7 +671,35 @@ virtualTour.setNodes([
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
+      },
+      { // Wall outline 
+        id: 'wall',
+        polylineRad: [[1.32, -0.209], [1.392, -0.192], [1.44, -0.172], [1.471, -0.145], [1.502, -0.111], [1.505, -0.089], [1.507, -0.07], [1.493, -0.052], [1.472, -0.043], [1.432, -0.033], [1.378, -0.027], [1.333, -0.028], [1.267, -0.027], [1.179, -0.031], [1.073, -0.043], [1.001, -0.045], [0.937, -0.044], [0.875, -0.042], [0.836, -0.039], [0.803, -0.035], [0.777, -0.026], [0.744, -0.019], [0.706, -0.019], [0.666, -0.015], [0.626, -0.017], [0.572, -0.018], [0.537, -0.023], [0.501, -0.029], [0.486, -0.038], [0.479, -0.049], [0.474, -0.06]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Wall outline
+        id: 'walls',
+        polylineRad: [[0.102, -0.081], [0.181, -0.074], [0.234, -0.069], [0.283, -0.068], [0.332, -0.06], [0.356, -0.052], [0.369, -0.039], [0.376, -0.028]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Wall outline
+        id: 'wall2',
+        polylineRad: [[2.318, -0.106], [2.27, -0.09], [2.225, -0.076], [2.186, -0.059], [2.141, -0.048], [2.122, -0.039], [2.085, -0.031], [2.056, -0.028], [2.007, -0.026], [1.952, -0.027], [1.895, -0.027], [1.856, -0.025], [1.799, -0.028], [1.753, -0.029], [1.701, -0.034], [1.659, -0.041], [1.596, -0.051], [1.571, -0.057], [1.531, -0.067], [1.515, -0.076], [1.509, -0.085]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
       }
+
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
   },
@@ -727,6 +754,24 @@ virtualTour.setNodes([
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
+      },
+      { // Wall outline 
+        id: 'wall',
+        polylineRad: [[3.171, -0.412], [2.773, -0.34], [2.472, -0.233], [2.319, -0.158], [2.175, -0.104], [2.08, -0.072], [2.015, -0.053], [1.936, -0.046], [1.838, -0.042], [1.72, -0.034], [1.655, -0.033], [1.568, -0.035], [1.5, -0.038], [1.411, -0.045], [1.301, -0.055], [1.192, -0.072], [1.061, -0.09], [0.974, -0.108], [0.857, -0.134], [0.723, -0.162], [0.542, -0.202], [0.286, -0.228], [6.258, -0.249], [5.935, -0.259], [5.866, -0.262]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Wall outline
+        id: 'walls',
+        polylineRad: [[0.713, -0.157], [0.764, -0.131], [0.809, -0.106], [0.84, -0.08], [0.846, -0.056], [0.832, -0.04], [0.806, -0.032], [0.773, -0.024], [0.729, -0.026], [0.674, -0.029], [0.609, -0.029], [0.54, -0.031], [0.47, -0.032], [0.408, -0.03], [0.355, -0.026], [0.308, -0.018], [0.271, -0.011], [0.228, -0.01], [0.183, -0.011], [0.142, -0.011], [0.097, -0.014], [0.065, -0.016], [0.021, -0.021], [6.265, -0.029], [6.237, -0.034], [6.209, -0.04], [6.198, -0.041]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
@@ -769,6 +814,15 @@ virtualTour.setNodes([
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
+      },
+      { // Wall outline 
+        id: 'wall',
+        polylineRad: [[4.393, -0.12], [4.339, -0.179], [4.218, -0.209], [4.059, -0.212], [3.855, -0.208], [3.737, -0.203], [3.59, -0.208], [3.427, -0.237], [3.201, -0.294], [2.758, -0.298], [2.411, -0.254], [2.055, -0.218], [1.766, -0.178], [1.486, -0.164], [1.144, -0.139], [0.904, -0.132], [0.741, -0.137], [0.554, -0.147], [0.33, -0.155], [6.276, -0.143], [5.987, -0.137], [5.761, -0.131], [5.545, -0.111], [5.439, -0.1], [5.338, -0.079]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 

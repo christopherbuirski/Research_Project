@@ -12,6 +12,7 @@ html,body,#photosphere {
 .help {
     text-align: center;
     list-style-position: inside;
+    font-family: Arial, sans-serif;
 }
 
 ol.center li {
@@ -27,11 +28,13 @@ ol.center li {
 .overlay{
     text-align: center;
     font-size: 70%;
+    font-family: Arial, sans-serif;
     /*font-family: Tahoma;*/
 }
 
 a:link {
     color: rgba(255, 255, 255, 0.7);
+    font-family: Arial, sans-serif;
     /*background-color: transparent;*/
     text-decoration: none;
 }
@@ -39,16 +42,25 @@ a:link {
 a:visited {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
+    font-family: Arial, sans-serif;
 }
 
 a:hover {
-    color: rgba(255, 255, 255, 0.7);
-    background-color: transparent;
-    font-weight: bold;
+    /*color: rgba(255, 255, 255, 1);*/
+    color: rgba(211, 90, 66, 0.967);
+    /*background-color: transparent;*/
+    font-family: Arial, sans-serif;
 }
 
-.help1:hover {
-    color: rgba(255, 255, 255, 0.7);
-    font-weight:bold;
+a:active {
+    text-decoration: underline;
 }
+
+/*
+.help1:hover {
+    color: rgba(255, 255, 255, 1);
+    background-color: transparent;
+        text-decoration: underline;
+    font-family: Arial, sans-serif;
+}*/
 
