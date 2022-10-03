@@ -5,27 +5,58 @@ var informationButton = 'map';
 var infoBlue = 'https://i.ibb.co/mb3vjdY/Blue-info-marker.png';
 var infoOrange = 'https://i.ibb.co/vPGKNJX/Orange-info-marker.png';
 
-var location_1 = 'https://i.ibb.co/9VL47dZ/GS-0119.jpg';
-var location_1_thumbnail = 'https://i.ibb.co/cCH8jsY/GS-0119.jpg';
-var location_2 = 'https://i.ibb.co/SvF61hc/GS-0120.jpg';
+//var location_1 = 'https://i.ibb.co/9VL47dZ/GS-0119.jpg';
+var location_1 = 'https://i.ibb.co/Px4cd5g/GS-0119-edited.jpg';
+//var location_1_thumbnail = 'https://i.ibb.co/cCH8jsY/GS-0119.jpg';
+var location_1_thumbnail = 'https://i.ibb.co/TcR4sHt/GS-0119-edited.jpg';
+
+
+//var location_2 = 'https://i.ibb.co/SvF61hc/GS-0120.jpg';
+var location_2 = 'https://i.ibb.co/ngGnZ2g/GS-0120-edited.jpg';
 var location_2_thumbnail = 'https://i.ibb.co/tCVHN7z/GS-0120.jpg';
-var location_3 = 'https://i.ibb.co/sVGQZ3W/GS-0121.jpg';
-var location_3_thumbnail = 'https://i.ibb.co/0GSZxJs/GS-0121.jpg';
-var location_4 = 'https://i.ibb.co/FBYv6Yv/GS-0122.jpg';
-var location_4_thumbnail = 'https://i.ibb.co/30FX1FX/GS-0122.jpg';
-var location_5 = 'https://i.ibb.co/c6FMQZR/GS-0123.jpg';
+
+
+//var location_3 = 'https://i.ibb.co/sVGQZ3W/GS-0121.jpg';
+var location_3 = 'https://i.ibb.co/4t4R6rc/GS-0121-edited.jpg';
+var location_3_thumbnail = 'https://i.ibb.co/0GSZxJs/GS-0121.jpg'; // change link 
+
+
+//var location_4 = 'https://i.ibb.co/FBYv6Yv/GS-0122.jpg';
+var location_4 = 'https://i.ibb.co/QJ63J8b/GS-0122-edited.jpg';
+var location_4_thumbnail = 'https://i.ibb.co/30FX1FX/GS-0122.jpg'; // change link 
+
+//var location_5 = 'https://i.ibb.co/c6FMQZR/GS-0123.jpg';
+var location_5 = 'https://i.ibb.co/nDwSLzm/GS-0123-edited.jpg';
 var location_5_thumbnail = 'https://i.ibb.co/sKwkqNc/GS-0123.jpg';
-var location_6 = 'https://i.ibb.co/tQ7LVjC/GS-0124.jpg';
+
+
+//var location_6 = 'https://i.ibb.co/tQ7LVjC/GS-0124.jpg';
+var location_6 = 'https://i.ibb.co/vV9CXpV/GS-0124-edited.jpg';
 var location_6_thumbnail = 'https://i.ibb.co/2WDZGVK/GS-0124.jpg';
-var location_7 = 'https://i.ibb.co/n05kZrY/GS-0125.jpg';
+
+
+//var location_7 = 'https://i.ibb.co/n05kZrY/GS-0125.jpg';
+var location_7 = 'https://i.ibb.co/KGS2xhd/GS-0125-edited.jpg';
 var location_7_thumbnail = 'https://i.ibb.co/RSVHZ2s/GS-0125.jpg';
-var location_8 = 'https://i.ibb.co/rQQKLQC/GS-0126.jpg';
+
+
+//var location_8 = 'https://i.ibb.co/rQQKLQC/GS-0126.jpg';
+var location_8 = 'https://i.ibb.co/4WC3bM5/GS-0126-edited.jpg';
 var location_8_thumbnail = 'https://i.ibb.co/6yycpy3/GS-0126.jpg';
-var location_9 = 'https://i.ibb.co/4T4Cq7F/GS-0134.jpg';
+
+
+//var location_9 = 'https://i.ibb.co/4T4Cq7F/GS-0134.jpg';
+var location_9 = 'https://i.ibb.co/hcMVDf6/GS-0134-edited.jpg';
 var location_9_thumbnail = 'https://i.ibb.co/NjWfvsF/GS-0134.jpg';
-var location_10 = 'https://i.ibb.co/YLkTRWv/GS-0131.jpg';
+
+
+//var location_10 = 'https://i.ibb.co/YLkTRWv/GS-0131.jpg';
+var location_10 = 'https://i.ibb.co/R4z0Gvd/GS-0131-edited.jpg';
 var location_10_thumbnail = 'https://i.ibb.co/Tg8qvTz/GS-0131.jpg';
-var location_11 = 'https://i.ibb.co/mT4D4pw/GS-0129.jpg';
+
+
+//var location_11 = 'https://i.ibb.co/mT4D4pw/GS-0129.jpg';
+var location_11 = 'https://i.ibb.co/N6tMNdR/GS-0129-edited.jpg';
 var location_11_thumbnail = 'https://i.ibb.co/4tpmpkG/GS-0129.jpg';
 
 var viewer = new PhotoSphereViewer.Viewer({
@@ -158,6 +189,15 @@ virtualTour.setNodes([
         anchor: 'bottom center',
         tooltip: { content: 'Lebenya Site Overview', position: 'top center', trigger: 'hover' },
         content: 'this is an example'
+      },
+      { // Wall outline 
+        id: 'wall',
+        polylineRad: [[2.581, -0.149], [2.745, -0.171], [2.926, -0.189], [3.031, -0.192], [3.261, -0.17]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
       }
     ],
   },
@@ -396,7 +436,7 @@ virtualTour.setNodes([
         longitude: 0.12, latitude: -0.156,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Location of the house', position: 'top center', trigger: 'hover' },
+        tooltip: { content: 'Where was the House located?', position: 'top center', trigger: 'hover' },
         content: 'Where were their houses in relation to the stonewalls? <br> Why were the houses located like this?'
       },
       { // House location overlay
