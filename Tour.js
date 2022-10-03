@@ -2,6 +2,9 @@ var buttonId = 'overlay-button';
 var mapButton = 'map';
 var informationButton = 'map';
 
+var infoBlue = 'https://i.ibb.co/mb3vjdY/Blue-info-marker.png';
+var infoOrange = 'https://i.ibb.co/vPGKNJX/Orange-info-marker.png';
+
 var location_1 = 'https://i.ibb.co/9VL47dZ/GS-0119.jpg';
 var location_1_thumbnail = 'https://i.ibb.co/cCH8jsY/GS-0119.jpg';
 var location_2 = 'https://i.ibb.co/SvF61hc/GS-0120.jpg';
@@ -67,7 +70,7 @@ var viewer = new PhotoSphereViewer.Viewer({
     },
      'fullscreen'],*/
   
-  navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers', 'markersList', 
+  navbar: ['autorotate', 'zoom', 'move', 'caption', 
     {
       id: informationButton,
       title: 'Click here to view the Project Information',
@@ -83,7 +86,7 @@ var viewer = new PhotoSphereViewer.Viewer({
       title: 'Click here to view the Instructions',
       content: document.getElementById('help1').innerHTML,
       onClick: help,
-    },'nodesList','fullscreen'
+    },'markersList','nodesList','fullscreen'
   ]
 });
 
@@ -145,8 +148,17 @@ virtualTour.setNodes([
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
+      },
+      { // Info Marker
+        id: 'info',
+        listContent: 'Lebenya Site Overview',
+        image: infoOrange,
+        longitude: 5.362, latitude: 0.007,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Lebenya Site Overview', position: 'top center', trigger: 'hover' },
+        content: 'this is an example'
       }
-
     ],
   },
 
@@ -201,6 +213,16 @@ virtualTour.setNodes([
         hideList: true, // remove the marker from the markers list
         visible: false, // set the marker to not be visible, only will show in the compass
         data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
+      },
+      { // Info Marker
+        id: 'info',
+        listContent: 'Date of Discovery',
+        image: infoOrange,
+        longitude: 5.864, latitude: -0.152,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Site Discovery Date', position: 'top center', trigger: 'hover' },
+        content: 'When was the site found?'
       }
     ],
   },
@@ -274,6 +296,26 @@ virtualTour.setNodes([
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Info Marker
+        id: 'info',
+        listContent: 'Findings of Work',
+        image: infoOrange,
+        longitude: 5.741, latitude: -0.294,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Findings of Work', position: 'top center', trigger: 'hover' },
+        content: 'What have been the findings from the work done?'
+      },
+      { // Info Marker
+        id: 'info2',
+        listContent: 'Who Lived Here?',
+        image: infoOrange,
+        longitude: 0.276, latitude: -0.122,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Who Lived Here?', position: 'top center', trigger: 'hover' },
+        content: 'Who were the people that lived here?'
       }
     ],
   },
@@ -346,7 +388,28 @@ virtualTour.setNodes([
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(255, 255, 153, 1)' }
-      }
+      },
+      { // Info Marker
+        id: 'info',
+        listContent: 'Where was the House located?',
+        image: infoOrange,
+        longitude: 0.12, latitude: -0.156,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Location of the house', position: 'top center', trigger: 'hover' },
+        content: 'Where were their houses in relation to the stonewalls? <br> Why were the houses located like this?'
+      },
+      { // House location overlay
+        id: 'houseLocation',
+        polygonRad: [[0.917, -0.139], [0.627, -0.177], [0.78, -0.287], [1.087, -0.209]],
+        tooltip: { content: 'House Location', position: 'top center', trigger: 'hover' },
+        hideList: true,
+        svgStyle: {
+          fill: 'rgba(242, 242, 242, 0.6)',
+          stroke: 'rgba(217, 217, 217, 0.6)',
+          strokeWidth: '2px'
+        }
+      },
     ],
   },
   
