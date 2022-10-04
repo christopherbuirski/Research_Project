@@ -521,6 +521,16 @@ virtualTour.setNodes([
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Info Marker
+        id: 'info',
+        listContent: 'What did the houses look like?',
+        image: infoOrange,
+        longitude: 0.566, latitude: -0.397,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'What did the houses look like?', position: 'top center', trigger: 'hover' },
+        content: 'Include picture of house...'
       }
     ],
   },
@@ -593,6 +603,16 @@ virtualTour.setNodes([
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Info Marker
+        id: 'info',
+        listContent: 'Stonewall Information',
+        image: infoOrange,
+        longitude: 0.276, latitude: -0.28,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Information about the stonewalls', position: 'top center', trigger: 'hover' },
+        content: 'How were the walls built? why were they built? other materials that were used?'
       }
     ],
   },
@@ -656,6 +676,16 @@ virtualTour.setNodes([
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Info Marker
+        id: 'info',
+        listContent: 'Settlement Life',
+        image: infoOrange,
+        longitude: 2.117, latitude: -0.325,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Settlement Life', position: 'top center', trigger: 'hover' },
+        content: 'What was it like living in the settlement? Roles of the men, of the women, of children?'
       }
     ],
   },
@@ -719,6 +749,16 @@ virtualTour.setNodes([
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Info Marker
+        id: 'info',
+        listContent: 'Settlement Life Continued',
+        image: infoOrange,
+        longitude: 1.902, latitude: -0.153,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Settlement Life Continued', position: 'top center', trigger: 'hover' },
+        content: 'What was it like living in the settlement? What food did they eat? Quality of life/ life expectancy?'
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
@@ -801,8 +841,17 @@ virtualTour.setNodes([
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Info Marker
+        id: 'info',
+        listContent: 'Settlement Layout',
+        image: infoOrange,
+        longitude: 1.301, latitude: -0.437,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Settlement Layout', position: 'top center', trigger: 'hover' },
+        content: 'Why was the settlement laid out like this? What part of the settlement are we in?'
       }
-
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
   },
@@ -875,6 +924,16 @@ virtualTour.setNodes([
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Info Marker
+        id: 'info',
+        listContent: 'Settlement Layout Continued',
+        image: infoOrange,
+        longitude: 1.403, latitude: -0.214,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Settlement Layout Continued', position: 'top center', trigger: 'hover' },
+        content: 'Where are the entrances to the settlement?'
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
@@ -926,12 +985,19 @@ virtualTour.setNodes([
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
         svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
         data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Info Marker
+        id: 'info',
+        listContent: 'Future Archeological Work',
+        image: infoOrange,
+        longitude: 0.816, latitude: -0.244,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Future Archeological Work', position: 'top center', trigger: 'hover' },
+        content: 'Is there any future archeological work planned?'
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
   },
 
 ], '1');
-
-
-
