@@ -187,8 +187,9 @@ virtualTour.setNodes([
         longitude: 5.362, latitude: 0.007,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Lebenya Site Overview', position: 'top center', trigger: 'hover' },
-        content: 'this is an example'
+        tooltip: { content: 'Stonewall Site Information', position: 'top center', trigger: 'hover' },
+        //tooltip: { content: document.getElementById('overview').innerHTML, position: 'top center', trigger: 'hover' },
+        content: document.getElementById('overview').innerHTML
       },
       { // Wall outline 
         id: 'wall',
