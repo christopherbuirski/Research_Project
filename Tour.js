@@ -182,7 +182,7 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Lebenya Site Overview',
+        listContent: 'Stonewall Site Information',
         image: infoOrange,
         longitude: 5.362, latitude: 0.007,
         width: 50, height: 50,
