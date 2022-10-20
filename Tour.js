@@ -238,13 +238,24 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Date of Discovery',
+        listContent: 'Work Done on Site',
         image: infoOrange,
-        longitude: 5.864, latitude: -0.152,
+        longitude: 6.079, latitude: -0.018,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Site Discovery Date', position: 'top center', trigger: 'hover' },
-        content: 'When was the site found?'
+        tooltip: { content: 'Work Done on Site', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('workdone').innerHTML
+      }
+      ,
+      { // Info Marker
+        id: 'info2',
+        listContent: 'Where are we?',
+        image: infoOrange,
+        longitude: 0.759, latitude: -0.014,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Where are we?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('wherearewe').innerHTML
       }
     ],
   },
