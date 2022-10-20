@@ -245,8 +245,7 @@ virtualTour.setNodes([
         anchor: 'bottom center',
         tooltip: { content: 'Work Done on Site', position: 'top center', trigger: 'hover' },
         content: document.getElementById('workdone').innerHTML
-      }
-      ,
+      },
       { // Info Marker
         id: 'info2',
         listContent: 'Where are we?',
@@ -338,7 +337,7 @@ virtualTour.setNodes([
         width: 50, height: 50,
         anchor: 'bottom center',
         tooltip: { content: 'Findings of Work', position: 'top center', trigger: 'hover' },
-        content: 'What have been the findings from the work done?'
+        content: document.getElementById('findings').innerHTML
       },
       { // Info Marker
         id: 'info2',
@@ -347,8 +346,8 @@ virtualTour.setNodes([
         longitude: 0.276, latitude: -0.122,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Who Lived Here?', position: 'top center', trigger: 'hover' },
-        content: 'Who were the people that lived here?'
+        tooltip: { content: 'Who were the people who lived here?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('wholivedhere').innerHTML
       }
     ],
   },
