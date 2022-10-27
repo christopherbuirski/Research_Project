@@ -660,13 +660,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Settlement Life',
+        listContent: 'Stonewall Construction',
         image: infoOrange,
         longitude: 2.117, latitude: -0.325,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Settlement Life', position: 'top center', trigger: 'hover' },
-        content: 'What was it like living in the settlement? Roles of the men, of the women, of children?'
+        tooltip: { content: 'How were the stone walls constructed?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('wallconstruction').innerHTML
       }
     ],
   },
@@ -733,13 +733,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Settlement Life Continued',
+        listContent: 'Purpose of the Settlement',
         image: infoOrange,
         longitude: 1.902, latitude: -0.153,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Settlement Life Continued', position: 'top center', trigger: 'hover' },
-        content: 'What was it like living in the settlement? What food did they eat? Quality of life/ life expectancy?'
+        tooltip: { content: 'What was the purpose of the settlement?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('purpose').innerHTML
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
@@ -825,14 +825,35 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Settlement Layout',
+        listContent: 'Settlement Activities',
         image: infoOrange,
         longitude: 1.301, latitude: -0.437,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Settlement Layout', position: 'top center', trigger: 'hover' },
-        content: 'Why was the settlement laid out like this? What part of the settlement are we in?'
+        tooltip: { content: 'Where did settlement activities happen?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('activities').innerHTML
+      },
+      { // Info Marker
+        id: 'info2',
+        listContent: 'Settlement Life',
+        image: infoOrange,
+        longitude: 2.311, latitude: -0.157,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'What was it like living in the settlement?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('life').innerHTML
+      },
+      { // Info Marker
+        id: 'info3',
+        listContent: 'What Food Did They Eat?',
+        image: infoOrange,
+        longitude: 1.791, latitude: -0.205,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'What Food Did They Eat?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('food').innerHTML
       }
+      
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
   },
@@ -908,13 +929,23 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Settlement Layout Continued',
+        listContent: 'Life Expectancy',
         image: infoOrange,
         longitude: 1.403, latitude: -0.214,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Settlement Layout Continued', position: 'top center', trigger: 'hover' },
-        content: 'Where are the entrances to the settlement?'
+        tooltip: { content: 'Life expectancy of someone living at the settlement', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('expectancy').innerHTML
+      },
+      { // Info Marker
+        id: 'info2',
+        listContent: 'Rubbish Disposal',
+        image: infoOrange,
+        longitude: 0.809, latitude: -0.147,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Where did the people dispose of their rubbish?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('rubbish').innerHTML
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
@@ -971,11 +1002,21 @@ virtualTour.setNodes([
         id: 'info',
         listContent: 'Future Archeological Work',
         image: infoOrange,
-        longitude: 0.816, latitude: -0.244,
+        longitude: 0.897, latitude: -0.137,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Future Archeological Work', position: 'top center', trigger: 'hover' },
-        content: 'Is there any future archeological work planned?'
+        tooltip: { content: 'Future Archeological Work?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('work').innerHTML
+      },
+      { // Info Marker
+        id: 'info2',
+        listContent: 'Where did the people keep their animals?',
+        image: infoOrange,
+        longitude: 1.783, latitude: -0.222,
+        width: 50, height: 50,
+        anchor: 'bottom center',
+        tooltip: { content: 'Where did the people keep their animals?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('animals').innerHTML
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
