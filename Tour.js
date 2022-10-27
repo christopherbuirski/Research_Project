@@ -238,12 +238,12 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Findings of Work Done',
+        listContent: 'Site Work Done',
         image: infoOrange,
         longitude: 6.079, latitude: -0.018,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Findings of the work done', position: 'top center', trigger: 'hover' },
+        tooltip: { content: 'Site Work Done', position: 'top center', trigger: 'hover' },
         content: document.getElementById('workdone').innerHTML,
       },
       { // Info Marker
@@ -253,7 +253,7 @@ virtualTour.setNodes([
         longitude: 0.759, latitude: -0.014,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Where are we?', position: 'top center', trigger: 'hover' },
+        tooltip: { content: 'Where are we going?', position: 'top center', trigger: 'hover' },
         content: document.getElementById('wherearewe').innerHTML
       }
     ],
