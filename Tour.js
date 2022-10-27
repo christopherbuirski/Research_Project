@@ -331,23 +331,23 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Findings of Work',
+        listContent: 'Cluster Organisation',
         image: infoOrange,
         longitude: 5.741, latitude: -0.294,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Findings of Work', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('findings').innerHTML
+        tooltip: { content: 'How were each of the three clusters organised?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('organised').innerHTML
       },
       { // Info Marker
         id: 'info2',
-        listContent: 'Who Lived Here?',
+        listContent: 'Compound Appearance',
         image: infoOrange,
         longitude: 0.276, latitude: -0.122,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Who were the people who lived here?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('wholivedhere').innerHTML
+        tooltip: { content: 'Occupied Compound Appearance', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('compoundappearance').innerHTML
       }
     ],
   },
@@ -423,24 +423,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Where was the House located?',
+        listContent: 'Hut Appearance',
         image: infoOrange,
         longitude: 0.12, latitude: -0.156,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Where was the House located?', position: 'top center', trigger: 'hover' },
-        content: 'Where were their houses in relation to the stonewalls? <br> Why were the houses located like this?'
-      },
-      { // House location overlay
-        id: 'houseLocation',
-        polygonRad: [[0.917, -0.139], [0.627, -0.177], [0.78, -0.287], [1.087, -0.209]],
-        tooltip: { content: 'House Location', position: 'top center', trigger: 'hover' },
-        hideList: true,
-        svgStyle: {
-          fill: 'rgba(242, 242, 242, 0.6)',
-          stroke: 'rgba(217, 217, 217, 0.6)',
-          strokeWidth: '2px'
-        }
+        tooltip: { content: 'What did the huts look like?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('hut').innerHTML
       },
     ],
   },
@@ -516,13 +505,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'What did the houses look like?',
+        listContent: 'Materials & techniques for building a family unit',
         image: infoOrange,
         longitude: 0.566, latitude: -0.397,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'What did the houses look like?', position: 'top center', trigger: 'hover' },
-        content: 'Include picture of house...'
+        tooltip: { content: 'Materials & techniques for building a family unit?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('materials').innerHTML
       }
     ],
   },
@@ -598,13 +587,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Stonewall Information',
+        listContent: 'Who lived here',
         image: infoOrange,
         longitude: 0.276, latitude: -0.28,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Information about the stonewalls', position: 'top center', trigger: 'hover' },
-        content: 'How were the walls built? why were they built? other materials that were used?'
+        tooltip: { content: 'Who lived here?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('wholivedhere').innerHTML
       }
     ],
   },
