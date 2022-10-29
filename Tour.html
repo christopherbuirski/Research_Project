@@ -1,41 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+    <html lang="en">
 
-<head>
-    <title>Stonewall Site Virtual Tour</title>
-    <link rel="stylesheet" href="css/Tour.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/virtual-tour.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/markers.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/compass.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/gallery.css" />
-</head>
+        <head>
+            <title>Stonewall Site Virtual Tour</title>
+            <link rel="stylesheet" href="css/Tour.css" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.css" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/virtual-tour.css" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/markers.css" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/compass.css" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/gallery.css" />
+        </head>
 
-<script src="https://cdn.jsdelivr.net/npm/uevent@2/browser.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/virtual-tour.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/markers.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/compass.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/gallery.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uevent@2/browser.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three/build/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/virtual-tour.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/markers.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/compass.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/gallery.js"></script>
 
-<div id="photosphere"></div>
+        <div id="photosphere"></div>
 
-<!--Text for overlay when tour loads-->
-<script type="text/template" id="start">
+        <!--Text for overlay when tour loads-->
+        <script type="text/template" id="start">
             <h1> Welcome to the Virtual Tour for the Lebenya Stonewall Site </h1>
             <h4 align = "center" >Please click on the screen to proceed with the tour</h4>
             <p class = "overlay">The Help icon in the Navigation bar contains Instructions for the tour</p>
         </script>
 
-<!--Button 'help' text for navigation bar-->
-<script type="text/template" id="help1">
+        <!--Button 'help' text for navigation bar-->
+        <script type="text/template" id="help1">
             <a style="text-decoration: none; font-family: Arial, sans-serif;" color = "rgb(255, 255, 255, 0.7);">Help</a>
         </script>
 
-<!--Text for help overlay-->
-<script type="text/template" id="help">
-         <h3 align = "center" >Navigation Instructions</h3>
+        <!--Text for help overlay-->
+        <script type="text/template" id="help">
+            <h3 align = "center" >Navigation Instructions</h3>
             <ol class="center">
                 <li class = "main">You can pan the viewer around using your mouse or finger (touch screen devices)</li>
                 <li class = "main">Clicking on the green hotspot markers moves you to the next location in the tour</li>
@@ -54,18 +54,18 @@
             <h6 align = "center" >Click on the screen to dismiss these instructions</h6>
         </script>
 
-<!--Button 'location map' text for navigation bar-->
-<script type="text/template" id="map">
+        <!--Button 'location map' text for navigation bar-->
+        <script type="text/template" id="map">
             <a href="Map.html" style="text-decoration: none;" color = "rgb(255, 255, 255, 0.7);">Location Map</a>
         </script>
 
-<!--Button 'project information' text for navigation bar-->
-<script type="text/template" id="information">
+        <!--Button 'project information' text for navigation bar-->
+        <script type="text/template" id="information">
             <a href="ProjectInformation.html" style="text-decoration: none;" color = "rgb(255, 255, 255, 0.7);">Project Information</a>
         </script>
 
-<!--Location 1 Information text-->
-<script type="text/template" id="overview">
+        <!--Location 1 Information text-->
+        <script type="text/template" id="overview">
             <h1>Stonewall Site Information</h1>
             <p style="text-align:justify"> 
                 The stonewall site is located on Lebenya Farm which is owned by Jan and Serena Coetzee. 
@@ -87,7 +87,7 @@
             </p>
         </script>
 
-<script type="text/template" id="workdone">
+        <script type="text/template" id="workdone">
             <h1>Site Work Done </h1>
             <p style="text-align:justify"> 
                 The site has been diagrammed to consist of three clusters of stone walling, representing 
@@ -96,7 +96,7 @@
             <img src="https://i.ibb.co/xm6bsv0/Jordaan-Site-Map1.png" alt="Jordaan-Site-Map" style="width:100%;height:auto">
         </script>
 
-<script type="text/template" id="wherearewe">
+        <script type="text/template" id="wherearewe">
             <h1>Where are we?</h1>
             <p style="text-align:justify"> 
                 We are about to enter a household in the Southern cluster of the site that is a domestic space 
@@ -104,7 +104,7 @@
             </p>
         </script>
 
-<script type="text/template" id="organised">
+        <script type="text/template" id="organised">
             <h1>Cluster Organisation</h1>
             <p style="text-align:justify"> 
                 Each large cluster was enclosed by a boundary wall, and inside, in the centre, were located 
@@ -119,7 +119,7 @@
             </p>
         </script>
 
-<script type="text/template" id="compoundappearance">
+        <script type="text/template" id="compoundappearance">
             <h1>Cluster Organisation</h1>
             <p style="text-align:justify"> 
                 Here we have a schematic view of a compound recorded by William Burchell in July 1812 at the site of Dithakong, 
@@ -136,7 +136,7 @@
             <img src="https://i.ibb.co/Vp45dK9/Bachaping-house-Burchell4.png" alt="A schematic view of a compound" style="width:100%;height:auto">
         </script>
 
-<script type="text/template" id="hut">
+        <script type="text/template" id="hut">
             <h1>Appearance of the huts</h1>
             <p style="text-align:justify"> 
                 The sketch below is of the house of Moketze, son of Seenose from the outside 
@@ -162,7 +162,7 @@
             </p>
         </script>
 
-<script type="text/template" id="materials">
+        <script type="text/template" id="materials">
             <h1>The materials and Techniques used in building a family unit</h1>
             <p style="text-align:justify"> 
                 The walls were made of stone and the walls of the round hut were constructed using clay, soil and cow dung, 
@@ -174,7 +174,7 @@
             </p>
         </script>
 
-<script type="text/template" id="wholivedhere">
+        <script type="text/template" id="wholivedhere">
             <h1>Who were the people who lived here?</h1>
             <p style="text-align:justify"> 
                 It is not certain, but the likely occupants were the Phiring people, whose traditions place them not far from the 
@@ -186,7 +186,7 @@
             </p>
         </script>
 
-<script type="text/template" id="wallconstruction">
+        <script type="text/template" id="wallconstruction">
             <h1>Construction of the stonewalls</h1>
             <p style="text-align:justify"> 
                 The stonewalls at Lebenya were constructed in several styles and of different heights indicating that the people living here came from different groups.
@@ -197,7 +197,7 @@
             </p>
         </script>
 
-<script type="text/template" id="purpose">
+        <script type="text/template" id="purpose">
             <h1>Settlement Purpose</h1>
             <p style="text-align:justify"> 
                 Lebenya was probably the overnight residence of people who carried out agriculture, herding, hunting, and gathering in the 
@@ -211,7 +211,7 @@
             <img src="https://i.ibb.co/XYf7Hf7/Burchell-overview-Dithakong1.jpg" alt="An illustration of Ditakong town" style="width:100%;height:auto">
         </script>
 
-<script type="text/template" id="activities">
+        <script type="text/template" id="activities">
             <h1>Settlement Activities</h1>
             <p style="text-align:justify"> 
                 Grazing and watering of sheep, goats and cattle took place an hour or two away from the site, 
@@ -222,28 +222,28 @@
             </p>
         </script>
 
-<script type="text/template" id="life">
+        <script type="text/template" id="life">
             <h1>What was it like living in the settlement?</h1>
             <p style="text-align:justify"> 
                 Living close together required a system of regulating behaviour and resolving disputes, usually at the main meeting place, or kgotla. 
             </p>
         </script>
 
-<script type="text/template" id="food">
+        <script type="text/template" id="food">
             <h1>What Food Did They Eat?</h1>
             <p style="text-align:justify"> 
                 Their diet consisted of grain, meat from stock animals, beans, melons, wild meat, milk from cows and sheep, and beer (bojalwa) brewed from grain. 
             </p>
         </script>
 
-<script type="text/template" id="expectancy">
+        <script type="text/template" id="expectancy">
             <h1>The life expectancy of someone living at the settlement</h1>
             <p style="text-align:justify"> 
                 Very few burials have been found from this time period, and none from Lebenya, but generally speaking it would be rare to live beyond 50 or so.
             </p>
         </script>
 
-<script type="text/template" id="rubbish">
+        <script type="text/template" id="rubbish">
             <h1>Where did the people dispose of their rubbish?</h1>
             <p style="text-align:justify"> 
                 Usually, each compound was swept daily and rubbish located in a special area, which could be covered by ash from the 
@@ -251,7 +251,7 @@
             </p>
         </script>
 
-<script type="text/template" id="work">
+        <script type="text/template" id="work">
             <h1>Is there any future archaeological work planned?</h1>
             <p style="text-align:justify"> 
                 Hundreds of sites like Lebenya are located in the region. Only the largest have been studied in depth, 
@@ -260,13 +260,12 @@
             </p>
         </script>
 
-<script type="text/template" id="animals">
+        <script type="text/template" id="animals">
             <h1>Where did the people keep their animals?</h1>
             <p style="text-align:justify"> 
                 Inside the settlement are located various sizes of animal pens (kraals) for keeping cattle, sheep, and young animals penned up overnight.
             </p>
         </script>
 
-<script src="Tour.js"></script>
-
-</html>
+        <script src="js/Tour.js"></script>
+    </html>
