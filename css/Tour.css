@@ -1,5 +1,4 @@
 html,body,#photosphere {
-    /*margin: auto;*/
     margin: 0;
     width: 100%;
     height: 100%;
@@ -21,22 +20,15 @@ ol.center li {
     margin-left: 1px;
 }
 
-/*ol {
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
-}*/
 .overlay{
     text-align: center;
     font-size: 70%;
     font-family: Arial, sans-serif;
-    /*font-family: Tahoma;*/
 }
 
 a:link {
     color: rgba(255, 255, 255, 0.7);
     font-family: Arial, sans-serif;
-    /*background-color: transparent;*/
     text-decoration: none;
 }
 
@@ -47,9 +39,7 @@ a:visited {
 }
 
 a:hover {
-    /*color: rgba(255, 255, 255, 1);*/
     color: rgba(211, 90, 66, 0.967);
-    /*background-color: transparent;*/
     font-family: Arial, sans-serif;
 }
 
@@ -64,11 +54,3 @@ li.main {
 li.main1 {
     margin-top: 10px;
 }
-
-/*
-.help1:hover {
-    color: rgba(255, 255, 255, 1);
-    background-color: transparent;
-        text-decoration: underline;
-    font-family: Arial, sans-serif;
-}*/
