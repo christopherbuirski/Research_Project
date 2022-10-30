@@ -2,7 +2,7 @@ var buttonId = 'overlay-button';
 var mapButton = 'map';
 var informationButton = 'map';
 
-var infoBlue = 'https://i.ibb.co/mb3vjdY/Blue-info-marker.png';
+// Variable for orange info marker link
 var infoOrange = 'https://i.ibb.co/y0DFNPj/Orange-Info.png';
 
 // Variables for image links 
@@ -44,42 +44,24 @@ var viewer = new PhotoSphereViewer.Viewer({
   loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
   defaultZoomLvl: 0,
   touchmoveTwoFingers: false,
-  //caption: 'Virtual Tour at Lebenya',
-  //defaultLat: 0.1,
   moveSpeed: 1.3,
   zoomSpeed: 1.2,
   autorotateSpeed: '1.5rpm',
   plugins: 
     [
-      PhotoSphereViewer.CompassPlugin, // allows one to use the compass plugin 
-      PhotoSphereViewer.MarkersPlugin, // allows one to use markers 
-      //PhotoSphereViewer.GalleryPlugin, // allows one to use the gallery instead of the nodes list 
-      [PhotoSphereViewer.VirtualTourPlugin, // allows one to use the virtual tour, by creating nodes that link to other paneramas
+      PhotoSphereViewer.CompassPlugin,
+      PhotoSphereViewer.MarkersPlugin,
+      [PhotoSphereViewer.VirtualTourPlugin,
         {
-        positionMode: 'manual', // set the virtual tour to use manually placed node link
-        renderMode: 'markers', // set the node links to use markers instead of arrows
-        linksOnCompass: false, // remove the node links from the compass, will use other markers for the compass
-        
-        markerStyle:{
-          html: null, // remove the default arrow node link
-          ellipse: [30, 15], // set the node link to be an ellipse 
-          anchor: 'bottom center', // anchor the ellipse to the bottom center
-          scale: {
-            zoom: [0.5, 1] // the marker is twice smaller on the minimum zoom level
-          },
-        }
+          positionMode: 'manual', // set the virtual tour to use manually placed node link
+          renderMode: 'markers', // set the node links to use markers instead of arrows
+          linksOnCompass: false, // remove the node links from the compass, will use other markers for the compass
+          markerStyle:{ html: null, ellipse: [30, 15], anchor: 'bottom center', scale: { zoom: [0.5, 1] },}, // marker style
+          startNodeId: '1', // set the starting node as node 1
+          preload: true
         }
       ],
     ],  
-  //navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers','markersList', 'nodesList', 'fullscreen' ], 
-  /*navbar: ['autorotate', 'zoom', 'move', 'caption', 'markers','markersList', 'nodesList',
-    {
-      id: buttonId,
-      title: 'Show overlay',
-      content: 'Help', 
-      onClick: help,
-    },
-     'fullscreen'],*/
   
   navbar: ['autorotate', 'zoom', 'move', 'caption', 
     {
@@ -238,23 +220,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Site Work Done',
+        listContent: 'Work Done on Site',
         image: infoOrange,
         longitude: 6.079, latitude: -0.018,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Site Work Done', position: 'top center', trigger: 'hover' },
+        tooltip: { content: 'Work Done on Site', position: 'top center', trigger: 'hover' },
         content: document.getElementById('workdone').innerHTML,
-      },
-      { // Info Marker
-        id: 'info2',
-        listContent: 'Where are we?',
-        image: infoOrange,
-        longitude: 0.759, latitude: -0.014,
-        width: 50, height: 50,
-        anchor: 'bottom center',
-        tooltip: { content: 'Where are we going?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('wherearewe').innerHTML
       }
     ],
   },
@@ -331,23 +303,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Cluster Organisation',
-        image: infoOrange,
-        longitude: 5.741, latitude: -0.294,
-        width: 50, height: 50,
-        anchor: 'bottom center',
-        tooltip: { content: 'How were each of the three clusters organised?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('organised').innerHTML
-      },
-      { // Info Marker
-        id: 'info2',
-        listContent: 'Compound Appearance',
+        listContent: 'Where are we going?',
         image: infoOrange,
         longitude: 0.276, latitude: -0.122,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Occupied Compound Appearance', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('compoundappearance').innerHTML
+        tooltip: { content: 'Where are we going?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('wherearewe').innerHTML
       }
     ],
   },
@@ -423,13 +385,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Hut Appearance',
+        listContent: 'How were each of the three clusters organised?',
         image: infoOrange,
         longitude: 0.12, latitude: -0.156,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'What did the huts look like?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('hut').innerHTML
+        tooltip: { content: 'How were each of the three clusters organised?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('organised').innerHTML
       },
     ],
   },
@@ -505,13 +467,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Materials & techniques for building a family unit',
+        listContent: 'Compound Appearance',
         image: infoOrange,
         longitude: 0.566, latitude: -0.397,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Materials & techniques for building a family unit?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('materials').innerHTML
+        tooltip: { content: 'How did the compound look like when it was occupied?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('compoundappearance').innerHTML
       }
     ],
   },
@@ -587,13 +549,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Who lived here',
+        listContent: 'Appearance of the huts',
         image: infoOrange,
         longitude: 0.276, latitude: -0.28,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Who lived here?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('wholivedhere').innerHTML
+        tooltip: { content: 'What did the huts look like?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('hut').innerHTML
       }
     ],
   },
@@ -660,13 +622,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Stonewall Construction',
+        listContent: 'Materials & techniques for buildings a family unit',
         image: infoOrange,
         longitude: 2.117, latitude: -0.325,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'How were the stone walls constructed?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('wallconstruction').innerHTML
+        tooltip: { content: 'What materials & techniques were used to build a family unit?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('materials').innerHTML
       }
     ],
   },
@@ -733,13 +695,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Purpose of the Settlement',
+        listContent: 'Who lived here?',
         image: infoOrange,
         longitude: 1.902, latitude: -0.153,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'What was the purpose of the settlement?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('purpose').innerHTML
+        tooltip: { content: 'Who were the people who lived here?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('wholivedhere').innerHTML
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
@@ -825,35 +787,14 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Settlement Activities',
+        listContent: 'Stonewall Construction',
         image: infoOrange,
         longitude: 1.301, latitude: -0.437,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Where did settlement activities happen?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('activities').innerHTML
-      },
-      { // Info Marker
-        id: 'info2',
-        listContent: 'Settlement Life',
-        image: infoOrange,
-        longitude: 2.311, latitude: -0.157,
-        width: 50, height: 50,
-        anchor: 'bottom center',
-        tooltip: { content: 'What was it like living in the settlement?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('life').innerHTML
-      },
-      { // Info Marker
-        id: 'info3',
-        listContent: 'What Food Did They Eat?',
-        image: infoOrange,
-        longitude: 1.791, latitude: -0.205,
-        width: 50, height: 50,
-        anchor: 'bottom center',
-        tooltip: { content: 'What Food Did They Eat?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('food').innerHTML
+        tooltip: { content: 'How were the stonewalls constructed?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('wallconstruction').innerHTML
       }
-      
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
   },
@@ -929,23 +870,13 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Life Expectancy',
+        listContent: 'Settlement purpose',
         image: infoOrange,
         longitude: 1.403, latitude: -0.214,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Life expectancy of someone living at the settlement', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('expectancy').innerHTML
-      },
-      { // Info Marker
-        id: 'info2',
-        listContent: 'Rubbish Disposal',
-        image: infoOrange,
-        longitude: 0.809, latitude: -0.147,
-        width: 50, height: 50,
-        anchor: 'bottom center',
-        tooltip: { content: 'Where did the people dispose of their rubbish?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('rubbish').innerHTML
+        tooltip: { content: 'What was the purpose of the settlement?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('purpose').innerHTML
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
@@ -1000,26 +931,15 @@ virtualTour.setNodes([
       },
       { // Info Marker
         id: 'info',
-        listContent: 'Future Archeological Work',
+        listContent: 'Settlement activities',
         image: infoOrange,
         longitude: 0.897, latitude: -0.137,
         width: 50, height: 50,
         anchor: 'bottom center',
-        tooltip: { content: 'Future Archeological Work?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('work').innerHTML
-      },
-      { // Info Marker
-        id: 'info2',
-        listContent: 'Where did the people keep their animals?',
-        image: infoOrange,
-        longitude: 1.783, latitude: -0.222,
-        width: 50, height: 50,
-        anchor: 'bottom center',
-        tooltip: { content: 'Where did the people keep their animals?', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('animals').innerHTML
+        tooltip: { content: 'Where did settlement activities happen?', position: 'top center', trigger: 'hover' },
+        content: document.getElementById('activities').innerHTML
       }
     ],
     panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
   },
-
-], '1');
+],);
