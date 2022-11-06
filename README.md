@@ -1,5 +1,5 @@
 # Lebenya Stonewall Site Virtual Tour
-<img alt="GitHub deployments" src="https://img.shields.io/github/deployments/christopherbuirski/Research_Project/github-pages?color=green&label=Virtual%20Tour%20Load%3A"> <img alt="GitHub" src="https://img.shields.io/github/license/christopherbuirski/Research_Project">
+<img alt="GitHub deployments" src="https://img.shields.io/github/deployments/christopherbuirski/Research_Project/github-pages?color=green&label=Virtual%20Tour%20Load%3A"> <img alt="GitHub" src="https://img.shields.io/github/license/christopherbuirski/Research_Project?color=yellow">
 <img alt="GitHub forks" src="https://img.shields.io/github/forks/christopherbuirski/Research_Project?style=social"> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/christopherbuirski/Research_Project?style=social">
 <img alt="GitHub watchers" src="https://img.shields.io/github/watchers/christopherbuirski/Research_Project?style=social">
 
