@@ -5,6 +5,9 @@
 
 The virtual tour can be accessed [here](https://christopherbuirski.github.io/Research_Project/Tour.html).
 
+<a href="https://christopherbuirski.github.io/Research_Project/Tour.html" target="_blank">here</a>.
+
+
 ## Repository Organisation
 The folders are organised as follows:
 1. 360-degree_photos
