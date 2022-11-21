@@ -42,9 +42,12 @@ var location_11_thumbnail = 'https://i.ibb.co/DDzZMHd/GS-0129-edited.jpg';
 const viewer = new PhotoSphereViewer.Viewer({
   container: 'photosphere',
   loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
-  touchmoveTwoFingers: false,
-  mousewheelCtrlKey: false,
   defaultZoomLvl: 0,
+  touchmoveTwoFingers: false,
+  moveSpeed: 1.3,
+  zoomSpeed: 1.2,
+  //mousewheelCtrlKey: false,
+  autorotateSpeed: '1.5rpm',
   plugins: [
     PhotoSphereViewer.MarkersPlugin,
     [PhotoSphereViewer.CompassPlugin, {
