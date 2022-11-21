@@ -1,71 +1,83 @@
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 
-        <head>
-            <title>Stonewall Site Virtual Tour</title>
-            <link rel="stylesheet" href="css/Tour.css" />
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.css" />
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/virtual-tour.css" />
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/markers.css" />
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/compass.css" />
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/gallery.css" />
-        </head>
+<head>
+    <title>Stonewall Site Virtual Tour</title>
+    <link rel="stylesheet" href="css/Tour.css" />
 
-        <script src="https://cdn.jsdelivr.net/npm/uevent@2/browser.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/three/build/three.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/virtual-tour.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/markers.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/compass.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/gallery.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/virtual-tour.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/markers.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/compass.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/gallery.css" />
+</head>
 
-        <div id="photosphere"></div>
+<script src="https://cdn.jsdelivr.net/npm/uevent@2/browser.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/virtual-tour.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/markers.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/compass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/plugins/gallery.js"></script>
 
-        <!--Text for overlay when tour loads-->
-        <script type="text/template" id="start">
-            <h1> Welcome to the Virtual Tour for the Lebenya Stonewall Site </h1>
-            <h4 align = "center" >Please click on the screen to proceed with the tour</h4>
-            <p class = "overlay">The Help icon in the Navigation bar contains Instructions for the tour</p>
-        </script>
+<div id="photosphere"></div>
 
-        <!--Text for help overlay-->
-        <script type="text/template" id="help">
-            <h3 align = "center" >Navigation Instructions</h3>
-            <ol class="center">
-                <li class = "main">You can pan the viewer around using your mouse or finger (touch screen devices)</li>
-                <li class = "main">Clicking on the green hotspot markers moves you to the next location in the tour</li>
-                <li class = "main"> Clicking on the red hotspot markers moves you to the previous location in the tour</li>
-                <li class = "main">Hovering over a marker will trigger a popup that identifies the feature </li>
-                <li>Clicking on an information marker will trigger the side panel to appear </li>
-                    <ul>
-                        <li>The side panel will contain more information about the feature</li>
-                    </ul>
-                <li class = "main1">The markers list displays a list of all the information markers at each location</li>
-                    <ul>
-                        <li>Clicking on a marker in the list orientates the viewer to that marker</li>
-                    </ul>
-                <li class = "main">Clicking on the locations icon allows you to skip to a forward or previous location in the tour </li><br>
-            </ol> 
-            <h6 align = "center" >Click on the screen to dismiss these instructions</h6>
-        </script>
+<!--Text for overlay when tour loads-->
+<script type="text/template" id="start">
+    <h1 class = "overlay2"> Welcome to the Virtual Tour for the Lebenya Stonewall Site </h1>
+    <h4 class = "overlay1">Please click on the screen to proceed with the tour</h4>
+    <p class = "overlay">The Help icon in the Navigation bar contains instructions for the tour</p>
+</script>
 
-        <!--Button 'location map' text for navigation bar-->
-        <script type="text/template" id="map">
+<!--Text for help overlay-->
+<script type="text/template" id="help">
+    <h3 align = "center" >Navigation Instructions</h3>
+    <ol class="center">
+        <li class = "main">You can pan the viewer around using your mouse or finger (touch screen devices)</li>
+        <li>You can use the 3D orange arrows to move to the next or previous location in the tour</li>
+            <ul>
+                <li>Hovering your cursor over the 3D orange arrows, triggers a popup indicating which location it will take you to </li>
+            </ul>
+        <li class = "main1">Hovering your cursor over the information markers will trigger a popup identifying the marker</li>
+            <ul>
+                <li>Clicking on the information markers will trigger the side panel to appear</li>
+                <li>The side panel will contain more information about the feature</li>
+            </ul>
+        <li class = "main">Clicking on the Autorotate button triggers the viewer to turn around</li>
+        <li class = "main">The zoom level can be adjusted using the zoom level slider, using your scroll wheel, or pinch to zoom (touch screen devices)</li>
+        <li class = "main">The location number for each tour location is displayed in the camption at bottom of the screen</li>
+        <li class = "main1">The markers list displays a list of all the information markers at each location</li>
+            <ul>
+                <li>Clicking on a marker in the list orientates the viewer to that marker</li>
+            </ul>
+        <li class = "main">The gallery allows you to skip forward or backward to a specific location by clicking on that location in the gallery view</li>
+        <li class = "main1">Clicking on the full screen icon allows you to view the tour in full-screen</li>
+            <ul>
+                <li>When in full-screen, you can use the arrow keys on your keyboard to pan the viewer around</li>
+            </ul>
+        
+        <br>
+    </ol> 
+    <h6 align = "center" >Click on the screen to dismiss these instructions</h6>
+</script>
+
+<!--Button 'location map' text for navigation bar-->
+<script type="text/template" id="map">
             <a href="html/Map.html" style="text-decoration: none;" color = "rgb(255, 255, 255, 0.7);">Location Map</a>
         </script>
 
-        <!--Button 'project information' text for navigation bar-->
-        <script type="text/template" id="information">
+<!--Button 'project information' text for navigation bar-->
+<script type="text/template" id="information">
             <a href="html/ProjectInformation.html" style="text-decoration: none;" color = "rgb(255, 255, 255, 0.7);">Project Information</a>
         </script>
 
-        <!--Button 'help' text for navigation bar-->
-        <script type="text/template" id="help1">
+<!--Button 'help' text for navigation bar-->
+<script type="text/template" id="help1">
             <a style="text-decoration: none; font-family: Arial, sans-serif;" color = "rgb(255, 255, 255, 0.7);">Help</a>
         </script>
 
-        <!--Location 1 Information text-->
-        <script type="text/template" id="overview">
+<!--Location 1 Information text-->
+<script type="text/template" id="overview">
             <h1>Stonewall Site Information</h1>
             <p style="text-align:justify"> 
                 The stonewall site is located on Lebenya Farm which is owned by Jan and Serena Coetzee. 
@@ -87,8 +99,8 @@
             </p>
         </script>
 
-        <!--Location 2 Information text-->
-        <script type="text/template" id="workdone">
+<!--Location 2 Information text-->
+<script type="text/template" id="workdone">
             <h1>Work Done on Site</h1>
             <p style="text-align:justify"> 
                 The site has been diagrammed to consist of three clusters of stone walling, representing 
@@ -96,9 +108,9 @@
             </p>
             <img src="https://i.ibb.co/xm6bsv0/Jordaan-Site-Map1.png" alt="Jordaan-Site-Map" style="width:100%;height:auto">
         </script>
-        
-        <!--Location 3 Information text-->
-        <script type="text/template" id="wherearewe">
+
+<!--Location 3 Information text-->
+<script type="text/template" id="wherearewe">
             <h1>Where are we going?</h1>
             <p style="text-align:justify"> 
                 We are about to enter a household in the Southern cluster of the site that is a domestic space 
@@ -106,8 +118,8 @@
             </p>
         </script>
 
-        <!--Location 4 Information text-->
-        <script type="text/template" id="organised">
+<!--Location 4 Information text-->
+<script type="text/template" id="organised">
             <h1>Cluster Organisation</h1>
             <p style="text-align:justify"> 
                 Each large cluster was enclosed by a boundary wall, and inside, in the centre, were located 
@@ -122,8 +134,8 @@
             </p>
         </script>
 
-        <!--Location 5 Information text-->
-        <script type="text/template" id="compoundappearance">
+<!--Location 5 Information text-->
+<script type="text/template" id="compoundappearance">
             <h1>Compound Appearance</h1>
             <p style="text-align:justify"> 
                 Here we have a schematic view of a compound recorded by William Burchell in July 1812 at the site of Dithakong, 
@@ -139,93 +151,94 @@
             <img src="https://i.ibb.co/Vp45dK9/Bachaping-house-Burchell4.png" alt="A schematic view of a compound" style="width:100%;height:auto">
         </script>
 
-        <!--Location 6 Information text-->
-        <script type="text/template" id="hut">
-            <h1>Appearance of the huts</h1>
-            <p style="text-align:justify"> 
-                The sketch below is of the house of Moketze, son of Seenose from the outside 
-                and then a cross-cut sketch of a hut containing corn vessels from the same household.
-            </p>
-            <img src="https://i.ibb.co/jTZ2sZ4/Campell-sketch-of-house-and-pot-in-Kaditswhene.png" alt="Sketch of the house of Moketze" style="width:100%;height:auto">
-            <p style="text-align:justify"> 
-                The sketch below is of a clay pot from Kaditshwene and Senosee's yard with huts in the back. 
-            </p>
-            <img src="https://i.ibb.co/Z6NrTps/Campell-sketch-of-house-in-Kaditswhene.png" alt="Sketch depicting a clay pot from Kaditshwene and Senosee’s yard" style="width:100%;height:auto">
-            <p style="text-align:justify"> 
-                These sketches were made by John Campbell, who visited the town of Kaditshwene (not far from Lebenya) in 1820 
-                and were digitised by Jan Boeyens. Although the occupants of Kaditshwne would have been different to those 
-                occupying the stonewall site at Lebenya Farm, the spatial organisation of a compound and elements within 
-                it would have been very similar to that shown in the above sketches.
-            </p>
-            <p style="text-align:justify"> 
-                The sources of these sketches is John Campbell's Diary of his Visit to The Bahurutshe Capital Kaditshwene in May 1820, 
-                Volume 1, Manuscript. MSB77(1), National Library of South Africa.
-            </p>
-        </script>
+<!--Location 6 Information text-->
+<script type="text/template" id="hut">
+    <h1>Appearance of the huts</h1>
+    <p style="text-align:justify"> 
+        The sketch below is of the house of Moketze, son of Seenose from the outside 
+        and then a cross-cut sketch of a hut containing corn vessels from the same household.
+    </p>
+    <img src="https://i.ibb.co/jTZ2sZ4/Campell-sketch-of-house-and-pot-in-Kaditswhene.png" alt="Sketch of the house of Moketze" style="width:100%;height:auto">
+    <p style="text-align:justify"> 
+        The sketch below is of a clay pot from Kaditshwene and Senosee's yard with huts in the back. 
+    </p>
+    <img src="https://i.ibb.co/Z6NrTps/Campell-sketch-of-house-in-Kaditswhene.png" alt="Sketch depicting a clay pot from Kaditshwene and Senosee’s yard" style="width:100%;height:auto">
+    <p style="text-align:justify"> 
+        These sketches were made by John Campbell, who visited the town of Kaditshwene (not far from Lebenya) in 1820 
+        and were digitised by Jan Boeyens. Although the occupants of Kaditshwne would have been different to those 
+        occupying the stonewall site at Lebenya Farm, the spatial organisation of a compound and elements within 
+        it would have been very similar to that shown in the above sketches.
+    </p>
+    <p style="text-align:justify"> 
+        The sources of these sketches is John Campbell's Diary of his Visit to The Bahurutshe Capital Kaditshwene in May 1820, 
+        Volume 1, Manuscript. MSB77(1), National Library of South Africa.
+    </p>
+</script>
 
-        <!--Location 7 Information text-->
-        <script type="text/template" id="materials">
-            <h1>The materials and techniques for building a family unit</h1>
-            <p style="text-align:justify"> 
-                The walls were made of stone and the walls of the round hut were constructed using clay, soil and cow dung, 
-                and thickets of branches as to hold it place.
-            </p>
-            <p style="text-align:justify"> 
-                The roof was supported by wooden poles around the edge to support the framework that held the grass thatch.
-            </p>
-        </script>
+<!--Location 7 Information text-->
+<script type="text/template" id="materials">
+    <h1>The materials and techniques for building a family unit</h1>
+    <p style="text-align:justify"> 
+        The walls were made of stone and the walls of the round hut were constructed using clay, soil and cow dung, 
+        and thickets of branches as to hold it place.
+    </p>
+    <p style="text-align:justify"> 
+        The roof was supported by wooden poles around the edge to support the framework that held the grass thatch.
+    </p>
+</script>
 
-        <!--Location 8 Information text-->
-        <script type="text/template" id="wholivedhere">
-            <h1>Who were the people who lived here?</h1>
-            <p style="text-align:justify"> 
-                It is not certain, but the likely occupants were the Phiring people, whose traditions place them not far from the 
-                Lebenya site.  
-            </p>
-            <p style="text-align:justify"> 
-                The Phiring may have originally been part of the Hurutshe people, 
-                whose settlements have been located West of Lebenya.
-            </p>
-        </script>
+<!--Location 8 Information text-->
+<script type="text/template" id="wholivedhere">
+    <h1>Who were the people who lived here?</h1>
+    <p style="text-align:justify"> 
+        It is not certain, but the likely occupants were the Phiring people, whose traditions place them not far from the 
+        Lebenya site.  
+    </p>
+    <p style="text-align:justify"> 
+        The Phiring may have originally been part of the Hurutshe people, 
+        whose settlements have been located West of Lebenya.
+    </p>
+</script>
 
-        <!--Location 9 Information text-->
-        <script type="text/template" id="wallconstruction">
-            <h1>Construction of the stonewalls</h1>
-            <p style="text-align:justify"> 
-                The stonewalls at Lebenya were constructed in several styles and of different heights indicating that the people living here came from different groups.
-            </p>
-            <p style="text-align:justify"> 
-                Most of the stones were pulled from a nearby quarry and they were arranged with a technique known as dry walling, 
-                in other words without using any binding element to keep the walling together.
-            </p>
-        </script>
+<!--Location 9 Information text-->
+<script type="text/template" id="wallconstruction">
+    <h1>Construction of the stonewalls</h1>
+    <p style="text-align:justify"> 
+        The stonewalls at Lebenya were constructed in several styles and of different heights indicating that the people living here came from different groups.
+    </p>
+    <p style="text-align:justify"> 
+        Most of the stones were pulled from a nearby quarry and they were arranged with a technique known as dry walling, 
+        in other words without using any binding element to keep the walling together.
+    </p>
+</script>
 
-        <!--Location 10 Information text-->
-        <script type="text/template" id="purpose">
-            <h1>Settlement Purpose</h1>
-            <p style="text-align:justify"> 
-                Lebenya was probably the overnight residence of people who carried out agriculture, herding, hunting, and gathering in the 
-                surrounding landscape. The outer walls afforded privacy for those within and as well as preventing wild animals from straying 
-                into the settlement.
-            </p>
-            <p style="text-align:justify"> 
-                Below is an illustration of the much larger Tswana town of Ditakong, made by Burchell in 1812. Although the size of the 
-                settlement is different, this is an impression of how Lebenya may have also looked like when approached from the outside.
-            </p>
-            <img src="https://i.ibb.co/XYf7Hf7/Burchell-overview-Dithakong1.jpg" alt="An illustration of Ditakong town" style="width:100%;height:auto">
-        </script>
+<!--Location 10 Information text-->
+<script type="text/template" id="purpose">
+    <h1>Settlement Purpose</h1>
+    <p style="text-align:justify"> 
+        Lebenya was probably the overnight residence of people who carried out agriculture, herding, hunting, and gathering in the 
+        surrounding landscape. The outer walls afforded privacy for those within and as well as preventing wild animals from straying 
+        into the settlement.
+    </p>
+    <p style="text-align:justify"> 
+        Below is an illustration of the much larger Tswana town of Ditakong, made by Burchell in 1812. Although the size of the 
+        settlement is different, this is an impression of how Lebenya may have also looked like when approached from the outside.
+    </p>
+    <img src="https://i.ibb.co/XYf7Hf7/Burchell-overview-Dithakong1.jpg" alt="An illustration of Ditakong town" style="width:100%;height:auto">
+</script>
 
-        <!--Location 11 Information text-->
-        <script type="text/template" id="activities">
-            <h1>Settlement Activities</h1>
-            <p style="text-align:justify"> 
-                Grazing and watering of sheep, goats and cattle took place an hour or two away from the site, 
-                while cultivation of millet, beans, melons was carried out in the most fertile areas nearest the site.  
-            </p>
-            <p style="text-align:justify"> 
-                This area is known for good soils. Hunting for meat and skins (for clothing) was also common.
-            </p>
-        </script>
+<!--Location 11 Information text-->
+<script type="text/template" id="activities">
+    <h1>Settlement Activities</h1>
+    <p style="text-align:justify"> 
+        Grazing and watering of sheep, goats and cattle took place an hour or two away from the site, 
+        while cultivation of millet, beans, melons was carried out in the most fertile areas nearest the site.  
+    </p>
+    <p style="text-align:justify"> 
+        This area is known for good soils. Hunting for meat and skins (for clothing) was also common.
+    </p>
+</script>
 
-        <script src="js/Tour.js"></script>
-    </html>
+<script src="js/Tour.js"></script>
+
+</html>

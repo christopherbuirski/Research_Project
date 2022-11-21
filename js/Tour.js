@@ -39,36 +39,37 @@ var location_10_thumbnail = 'https://i.ibb.co/8465nKt/GS-0131-edited.jpg';
 var location_11 = 'https://i.ibb.co/N6tMNdR/GS-0129-edited.jpg';
 var location_11_thumbnail = 'https://i.ibb.co/DDzZMHd/GS-0129-edited.jpg';
 
-var viewer = new PhotoSphereViewer.Viewer({
+const viewer = new PhotoSphereViewer.Viewer({
   container: 'photosphere',
   loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
+  touchmoveTwoFingers: true,
+  mousewheelCtrlKey: false,
   defaultZoomLvl: 0,
-  touchmoveTwoFingers: false,
-  moveSpeed: 1.3,
-  zoomSpeed: 1.2,
-  autorotateSpeed: '1.5rpm',
-  plugins: 
-    [
-      PhotoSphereViewer.CompassPlugin,
-      PhotoSphereViewer.MarkersPlugin,
-      [PhotoSphereViewer.VirtualTourPlugin,
-        {
-          positionMode: 'manual', // set the virtual tour to use manually placed node link
-          renderMode: 'markers', // set the node links to use markers instead of arrows
-          linksOnCompass: false, // remove the node links from the compass, will use other markers for the compass
-          markerStyle:{ html: null, ellipse: [30, 15], anchor: 'bottom center', scale: { zoom: [0.5, 1] },}, // marker style
-          startNodeId: '1', // set the starting node as node 1
-          preload: true
-        }
+  plugins: [
+    PhotoSphereViewer.MarkersPlugin,
+    [PhotoSphereViewer.CompassPlugin, {
+      hotspots: [
       ],
-    ],  
-  
-  navbar: ['autorotate', 'zoom', 'move', 'caption', 
+    }],
+    [PhotoSphereViewer.GalleryPlugin,
+    {
+      items: [],
+    }],
+
+    [PhotoSphereViewer.VirtualTourPlugin, {
+      positionMode: PhotoSphereViewer.VirtualTourPlugin.MODE_GPS,
+      renderMode: PhotoSphereViewer.VirtualTourPlugin.MODE_3D,
+      startNodeId: '1',
+    }],
+  ],
+  //  navbar: 'zoom move download gallery caption fullscreen',
+  navbar: [
+    'autorotate', 'zoom', 'move', 'caption',
     {
       id: informationButton,
       title: 'Click here to view the Project Information',
       content: document.getElementById('information').innerHTML,
-    },   
+    },
     {
       id: mapButton,
       title: 'Click here to view the Location Map',
@@ -79,8 +80,8 @@ var viewer = new PhotoSphereViewer.Viewer({
       title: 'Click here to view the Instructions',
       content: document.getElementById('help1').innerHTML,
       onClick: help,
-    },'markersList','nodesList','fullscreen'
-  ]
+    }, 'markersList', 'gallery', 'fullscreen'
+  ],
 });
 
 function help() {
@@ -93,65 +94,35 @@ function help() {
 function showOverlay() {
   viewer.overlay.show({
     id: 'start',
-    text: document.getElementById('start').innerHTML,
+    image: document.getElementById('start').innerHTML,
     dissmisable: true,
   });
 }
 
 viewer.once('ready', showOverlay);
 
-var virtualTour = viewer.getPlugin(PhotoSphereViewer.VirtualTourPlugin);
+const virtualTour = viewer.getPlugin(PhotoSphereViewer.VirtualTourPlugin);
 
 virtualTour.setNodes([
-  { /* node 1 */
+  {
     id: '1',
-    panorama: location_1, // panerama image link 
-    thumbnail: location_1_thumbnail, // thumbnail image link
-    name: 'Location One', // set the name of the panerama in the nodeslist 
-    caption: 'Location One', // set the caption
-
+    panorama: location_1,
+    thumbnail: location_1_thumbnail,
+    name: 'Location One',
+    caption: 'Location One',
     links: [
-      { // link to the next location, location 2
-        nodeId: '2', longitude: 6.14, latitude: -0.217, name: 'Move Forward to here', 
-        markerStyle: { svgStyle: { fill: 'rgba(0, 255, 0, 0.4)', stroke: 'rgba(0, 255, 0, 0.4)', strokeWidth: 5 } } 
-      } 
+      { nodeId: '2' },
     ],
-
     markers: [
-      { // create a path between where you are standing to the next locator circle
-        id: 'path',
-        polylineRad: [[5.494, -1.5], [6.14, -0.217]], // path coodinates using long/ lat
-        hideList: true, // remove the path marker from the markers list 
-        svgStyle: { stroke: 'rgba(255, 255, 255, 0.4)', strokeWidth: '5px', strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the path
-        style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
-        data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
-      },
-      { // circle indicating where you are standing in the panarama
-        id: 'standing here',
-        circle: 30, // size of the circle 
-        longitude: 5.494, latitude: -1.5, // location of the circle in the panarama
-        hideList: true, // remove the circle from the markers list 
-        tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
-        svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' } // set the style of the circle 
-      },
-      { // marker for the compass to indicate where the next location is
-        id: 'forward not visible marker',
-        circle: 30, // size of the circle 
-        longitude: 6.14, latitude: -0.217, // long/ lat of the marker for the next location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
-      },
       { // Info Marker
         id: 'info',
         listContent: 'Stonewall Site Information',
         image: infoOrange,
-        //longitude: 5.362, latitude: 0.007,
         longitude: 5.85, latitude: 0.014,
         width: 50, height: 50,
         anchor: 'bottom center',
+        data: { compass: 'rgba(252, 191, 22, 1)' },
         tooltip: { content: 'Stonewall Site Information', position: 'top center', trigger: 'hover' },
-        //tooltip: { content: document.getElementById('overview').innerHTML, position: 'top center', trigger: 'hover' },
         content: document.getElementById('overview').innerHTML
       },
       { // Wall outline 
@@ -164,125 +135,44 @@ virtualTour.setNodes([
         data: { compass: 'rgba(255, 255, 153, 1)' }
       }
     ],
+    position: [-25.625578016173264, 26.630477320098883, 3],
   },
-
-  { /* node 2 */ 
+  {
     id: '2',
-    panorama: location_2, // panerama image link
-    thumbnail: location_2_thumbnail, // thumbnail image link
-    name: 'Location Two', // set the name of the panerama in the nodeslist 
-    caption: 'Location Two', // set the caption
-
+    panorama: location_2,
+    thumbnail: location_2_thumbnail,
+    name: 'Location Two',
+    caption: 'Location Two',
     links: [
-      { // link to the previous location, location 1
-        nodeId: '1', longitude: 2.857, latitude: -0.263, name: 'Move Back to here',
-        markerStyle: { svgStyle: { fill: 'rgba(200, 0, 50, 0.6)', stroke: 'rgba(200, 0, 50, 0.6)', strokeWidth: '5px' } }
-      },
-
-      { // link to the next location, location 3
-        nodeId: '3', longitude: 0.313, latitude: -0.127, name: 'Move Forward to here',
-        markerStyle: { svgStyle: { fill: 'rgba(0, 255, 0, 0.4)', stroke: 'rgba(0, 255, 0, 0.4)', strokeWidth: '5px' } }
-      }
+      { nodeId: '3' },
+      { nodeId: '1' },
     ],
-
     markers: [
-      { // create a path between from the indicator to the previous location to where you are standing and then to the next locator circle
-        id: 'path',
-        polylineRad: [[2.857, -0.263], [5.494, -1.5], [0.313, -0.127]], // path coodinates using long/ lat
-        hideList: true, // remove the path marker from the markers list 
-        svgStyle: { stroke: 'rgba(255, 255, 255, 0.4)', strokeWidth: '5px', strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the path
-        style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
-        data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
-      },
-      { // circle indicating where you are standing in the panarama
-        id: 'standing here',
-        circle: 30, // size of the circle 
-        longitude: 5.494, latitude: -1.5, // location of the circle in the panarama
-        hideList: true, // remove the circle from the markers list 
-        tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
-        svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle 
-      },
-      { // marker for the compass to indicate where the next location is
-        id: 'forward not visible marker',
-        circle: 30, // size of the circle 
-        longitude: 0.313, latitude: -0.127, // long/ lat of the marker for the next location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
-      },
-      { // marker for the compass to indicate where the previous location is
-        id: 'backward not visible marker',
-        circle: 30,
-        longitude: 2.857, latitude: -0.263, // long/ lat of the marker for the previous location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },
       { // Info Marker
-        id: 'info',
+        id: 'info2',
         listContent: 'Work Done on Site',
         image: infoOrange,
         longitude: 6.079, latitude: -0.018,
         width: 50, height: 50,
         anchor: 'bottom center',
+        data: { compass: 'rgba(252, 191, 22, 1)' },
         tooltip: { content: 'Work Done on Site', position: 'top center', trigger: 'hover' },
-        content: document.getElementById('workdone').innerHTML,
+        content: document.getElementById('workdone').innerHTML
       }
     ],
+    position: [-25.62559512944545, 26.630524113335607, 3],
   },
-
-  { /* node 3 */
+  {
     id: '3',
-    panorama: location_3, // panerama image link
-    thumbnail: location_3_thumbnail, // thumbnail image link
-    name: 'Location Three', // set the name of the panerama in the nodeslist
-    caption: 'Location Three', // set the caption 
-
+    panorama: location_3,
+    thumbnail: location_3_thumbnail,
+    name: 'Location Three',
+    caption: 'Location Three',
     links: [
-      { // link to the previous location, location 2
-        nodeId: '2', longitude: 3.678, latitude: -0.214, name: 'Move Back to here',
-        markerStyle: { svgStyle: { fill: 'rgba(200, 0, 50, 0.6)', stroke: 'rgba(200, 0, 50, 0.6)', strokeWidth: '5px' } }
-      },
-
-      { // link to the next location, location 4
-        nodeId: '4', longitude: 6.199, latitude: -0.132, name: 'Move Forward to here',
-        markerStyle: { svgStyle: { fill: 'rgba(0, 255, 0, 0.4)', stroke: 'rgba(0, 255, 0, 0.4)', strokeWidth: '5px' } }
-      }
+      { nodeId: '2' },
+      { nodeId: '4' },
     ],
-
-    markers: [  
-      { // create a path between from the indicator to the previous location to where you are standing and then to the next locator circle
-        id: 'path',
-        polylineRad: [[3.678, -0.214], [5.494, -1.5], [6.199, -0.132]], // path coodinates using long/ lat
-        hideList: true, // remove the path marker from the markers list 
-        svgStyle: { stroke: 'rgba(255, 255, 255, 0.4)', strokeWidth: '5px', strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the path
-        style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
-        data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
-      },
-      { // circle indicating where you are standing in the panarama
-        id: 'standing here',
-        circle: 30, // size of the circle 
-        longitude: 5.494, latitude: -1.5, // location of the circle in the panarama
-        hideList: true, // remove the circle from the markers list 
-        tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
-        svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle 
-      },
-      { // marker for the compass to indicate where the next location is
-        id: 'forward not visible marker',
-        circle: 30, // size of the circle 
-        longitude: 6.199, latitude: -0.132, // long/ lat of the marker for the next location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
-      },
-      { // marker for the compass to indicate where the previous location is
-        id: 'backward not visible marker',
-        circle: 30,
-        longitude: 3.678, latitude: -0.214, // long/ lat of the marker for the previous location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },
+    markers: [
       { // Wall outline
         id: 'wall',
         polylineRad: [[5.787, -0.041], [5.805, -0.041], [5.82, -0.04], [5.84, -0.042], [5.852, -0.049], [5.854, -0.061], [5.854, -0.074], [5.843, -0.092], [5.827, -0.099], [5.799, -0.112], [5.761, -0.128], [5.638, -0.176], [5.504, -0.197]],
@@ -308,63 +198,25 @@ virtualTour.setNodes([
         longitude: 0.276, latitude: -0.122,
         width: 50, height: 50,
         anchor: 'bottom center',
+        data: { compass: 'rgba(252, 191, 22, 1)' },
         tooltip: { content: 'Where are we going?', position: 'top center', trigger: 'hover' },
         content: document.getElementById('wherearewe').innerHTML
       }
     ],
+    position: [-25.62559271106007, 26.630529477753637, 3],
   },
 
-  { /* node 4 */
+  {/*Location 4*/
     id: '4',
-    panorama: location_4, // panerama image link
-    thumbnail: location_4_thumbnail, // thumbnail image link
-    name: 'Location Four', // set the name of the panerama in the nodeslist 
-    caption: 'Location Four', // set the caption
-
+    panorama: location_4,
+    thumbnail: location_4_thumbnail,
+    name: 'Location Four',
+    caption: 'Location Four',
     links: [
-      { // link to the previous location, location 3
-        nodeId: '3', longitude: 3.401, latitude: -0.405, name: 'Move Back to here', 
-        markerStyle: { svgStyle: { fill: 'rgba(200, 0, 50, 0.6)', stroke: 'rgba(200, 0, 50, 0.6)', strokeWidth: '5px' } }
-      },
-
-      { // link to the next location, location 5
-        nodeId: '5', longitude: 0.435, latitude: -0.221, name: 'Move Forward to here',
-        markerStyle: { svgStyle: { fill: 'rgba(0, 255, 0, 0.4)', stroke: 'rgba(0, 255, 0, 0.4)', strokeWidth: '5px' } } 
-      }
+      { nodeId: '5' },
+      { nodeId: '3' },
     ],
     markers: [
-      { // create a path between from the indicator to the previous location to where you are standing and then to the next locator circle
-        id: 'path',
-        polylineRad: [[3.401, -0.405], [5.494, -1.5], [0.435, -0.221]], // path coodinates using long/ lat
-        hideList: true, // remove the path marker from the markers list 
-        svgStyle: { stroke: 'rgba(255, 255, 255, 0.4)', strokeWidth: '5px', strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the path
-        style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
-        data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
-      },
-      { // circle indicating where you are standing in the panarama
-        id: 'standing here',
-        circle: 30, // size of the circle 
-        longitude: 5.494, latitude: -1.5, // location of the circle in the panarama
-        hideList: true, // remove the circle from the markers list 
-        tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
-        svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle
-      },
-      { // marker for the compass to indicate where the next location is
-        id: 'forward not visible marker',
-        circle: 30, // size of the circle 
-        longitude: 0.435, latitude: -0.221, // long/ lat of the marker for the next location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
-      },
-      { // marker for the compass to indicate where the previous location is
-        id: 'backward not visible marker',
-        circle: 30,
-        longitude: 3.401, latitude: -0.405, // long/ lat of the marker for the previous location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },
       { // Wall outline 
         id: 'wall',
         polylineRad: [[4.433, -0.517], [5.158, -0.505], [5.559, -0.38], [5.832, -0.242], [5.87, -0.191], [5.876, -0.15], [5.862, -0.109], [5.843, -0.091], [5.814, -0.08], [5.765, -0.077], [5.742, -0.076]],
@@ -390,63 +242,24 @@ virtualTour.setNodes([
         longitude: 0.12, latitude: -0.156,
         width: 50, height: 50,
         anchor: 'bottom center',
+        data: { compass: 'rgba(252, 191, 22, 1)' },
         tooltip: { content: 'How were each of the three clusters organised?', position: 'top center', trigger: 'hover' },
         content: document.getElementById('organised').innerHTML
-      },
-    ],
+      }],
+    position: [-25.625625016138834, 26.630637815799734, 3],
   },
-  
-  { /* node 5 */
-    id: '5',
-    panorama: location_5, // panerama image link 
-    thumbnail: location_5_thumbnail, // thumbnail image link
-    name: 'Location Five', // set the name of the panerama in the nodeslist 
-    caption: 'Location Five', // set the caption
-    
-    links: [
-      { // link to the previous location, location 4
-        nodeId: '4', longitude: 3.14, latitude: -0.305, name: 'Move Back to here', 
-        markerStyle: { svgStyle: { fill: 'rgba(200, 0, 50, 0.6)', stroke: 'rgba(200, 0, 50, 0.6)', strokeWidth: '5px' } }
-      },
 
-      { // link to the next location, location 6
-        nodeId: '6', longitude: 0.253, latitude: -0.256, name: 'Move Forward to here',
-        markerStyle: { svgStyle: { fill: 'rgba(0, 255, 0, 0.4)', stroke: 'rgba(0, 255, 0, 0.4)', strokeWidth: '5px' } } 
-      }
+  { /*Location 5*/
+    id: '5',
+    panorama: location_5,
+    thumbnail: location_5_thumbnail,
+    name: 'Location Five',
+    caption: 'Location Five',
+    links: [
+      { nodeId: '6' },
+      { nodeId: '4' },
     ],
     markers: [
-      { // create a path between from the indicator to the previous location to where you are standing and then to the next locator circle
-        id: 'path',
-        polylineRad: [[3.14, -0.305], [5.494, -1.5], [0.253, -0.256]], // path coodinates using long/ lat
-        hideList: true, // remove the path marker from the markers list 
-        svgStyle: { stroke: 'rgba(255, 255, 255, 0.4)', strokeWidth: '5px', strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the path
-        style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
-        data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
-      },
-      { // circle indicating where you are standing in the panarama
-        id: 'standing here',
-        circle: 30, // size of the circle 
-        longitude: 5.494, latitude: -1.5, // location of the circle in the panarama
-        hideList: true, // remove the circle from the markers list 
-        tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
-        svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle
-      },
-      { // marker for the compass to indicate where the next location is
-        id: 'forward not visible marker',
-        circle: 30, // size of the circle 
-        longitude: 0.253, latitude: -0.256, // long/ lat of the marker for the next location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
-      },
-      { // marker for the compass to indicate where the previous location is
-        id: 'backward not visible marker',
-        circle: 30,
-        longitude: 3.14, latitude: -0.305, // long/ lat of the marker for the previous location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },
       { // Wall outline 
         id: 'wall',
         polylineRad: [[5.324, -0.355], [5.283, -0.262], [5.273, -0.172], [5.326, -0.119], [5.399, -0.1], [5.546, -0.087], [5.703, -0.086], [5.897, -0.085], [6.057, -0.118], [6.198, -0.149], [0.053, -0.136], [0.172, -0.124], [0.346, -0.123], [0.512, -0.1], [0.657, -0.1], [0.781, -0.104], [0.92, -0.107], [1.046, -0.114], [1.303, -0.128], [1.532, -0.148], [1.71, -0.161], [1.883, -0.195], [2.063, -0.24], [2.256, -0.285], [2.409, -0.321], [2.557, -0.35]],
@@ -472,63 +285,25 @@ virtualTour.setNodes([
         longitude: 0.566, latitude: -0.397,
         width: 50, height: 50,
         anchor: 'bottom center',
+        data: { compass: 'rgba(252, 191, 22, 1)' },
         tooltip: { content: 'How did the compound look like when it was occupied?', position: 'top center', trigger: 'hover' },
         content: document.getElementById('compoundappearance').innerHTML
-      }
-    ],
+      }],
+    //position: [-25.625625598580964, 26.630706926538945, 3],
+    position: [-25.625596577960422, 26.630705585434438, 3],
   },
 
-  { /* node 6 */
+  { /*Location 6*/
     id: '6',
-    panorama: location_6, // panerama image link
-    thumbnail: location_6_thumbnail, // thumbnail image link
-    name: 'Location Six', // set the name of the panerama in the nodeslist 
-    caption: 'Location Six', // set the caption
-
+    panorama: location_6,
+    thumbnail: location_6_thumbnail,
+    name: 'Location Six',
+    caption: 'Location Six',
     links: [
-      { // link to the previous location, location 5
-        nodeId: '5', longitude: 3.013, latitude: -0.326, name: 'Move Back to here',
-        markerStyle: { svgStyle: { fill: 'rgba(200, 0, 50, 0.6)', stroke: 'rgba(200, 0, 50, 0.6)', strokeWidth: '5px' } }
-      },
-
-      { // link to the next location, location 7
-        nodeId: '7', longitude: 1.504, latitude: -0.312, name: 'Move Forward to here',
-        markerStyle: { svgStyle: { fill: 'rgba(0, 255, 0, 0.4)', stroke: 'rgba(0, 255, 0, 0.4)', strokeWidth: '5px' } } 
-      }
+      { nodeId: '7' },
+      { nodeId: '5' },
     ],
     markers: [
-      { // create a path between from the indicator to the previous location to where you are standing and then to the next locator circle
-        id: 'path',
-        polylineRad: [[3.013, -0.326], [5.494, -1.5], [1.504, -0.312]], // path coodinates using long/ lat
-        hideList: true, // remove the path marker from the markers list 
-        svgStyle: { stroke: 'rgba(255, 255, 255, 0.4)', strokeWidth: '5px', strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the path
-        style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
-        data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
-      },
-      { // circle indicating where you are standing in the panarama
-        id: 'standing here',
-        circle: 30, // size of the circle
-        longitude: 5.494, latitude: -1.5, // location of the circle in the panarama
-        hideList: true, // remove the circle from the markers list 
-        tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
-        svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle
-      },
-      { // marker for the compass to indicate where the next location is
-        id: 'forward not visible marker',
-        circle: 30, // size of the circle 
-        longitude: 1.504, latitude: -0.312, // long/ lat of the marker for the next location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
-      },
-      { // marker for the compass to indicate where the previous location is
-        id: 'backward not visible marker',
-        circle: 30,
-        longitude: 3.013, latitude: -0.326, // long/ lat of the marker for the previous location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },
       { // Wall outline 
         id: 'wall',
         polylineRad: [[3.587, -0.244], [3.849, -0.158], [4.097, -0.106], [4.284, -0.081], [4.479, -0.087], [4.859, -0.08], [5.074, -0.087], [5.425, -0.154], [5.896, -0.218], [0.073, -0.196], [0.551, -0.128], [0.71, -0.107], [0.882, -0.107], [1.079, -0.111], [1.388, -0.131], [1.659, -0.139], [1.993, -0.158], [2.284, -0.171], [2.485, -0.184], [2.681, -0.197]],
@@ -554,66 +329,38 @@ virtualTour.setNodes([
         longitude: 0.276, latitude: -0.28,
         width: 50, height: 50,
         anchor: 'bottom center',
+        data: { compass: 'rgba(252, 191, 22, 1)' },
         tooltip: { content: 'What did the huts look like?', position: 'top center', trigger: 'hover' },
         content: document.getElementById('hut').innerHTML
-      }
-    ],
+      }],
+    //position: [-25.625621836281024, 26.630804142189035, 3],
+    position: [-25.625600070815597, 26.630792742800722, 3],
   },
 
-  { /* node 7 */
+  { /*Location 7*/
     id: '7',
-    panorama: location_7, // panerama image link
-    thumbnail: location_7_thumbnail, // thumbnail image link
-    name: 'Location Seven', // set the name of the panerama in the nodeslist 
-    caption: 'Location Seven', // set the caption
-
+    panorama: location_7,
+    thumbnail: location_7_thumbnail,
+    name: 'Location Seven',
+    caption: 'Location Seven',
     links: [
-      { // link to the previous location, location 6
-        nodeId: '6', longitude: 3.101, latitude: -0.344, name: 'Move Back to here',
-        markerStyle: { svgStyle: { fill: 'rgba(200, 0, 50, 0.6)', stroke: 'rgba(200, 0, 50, 0.6)', strokeWidth: '5px' } }
-      },
-
-      { // link to the next location, location 8
-        nodeId: '8', longitude: 1.5, latitude: -0.334, name: 'Move Forward to here',
-        markerStyle: { svgStyle: { fill: 'rgba(0, 255, 0, 0.4)', stroke: 'rgba(0, 255, 0, 0.4)', strokeWidth: '5px' } }  
-      }
+      { nodeId: '8' },
+      { nodeId: '6' },
     ],
     markers: [
-      { // create a path between from the indicator to the previous location to where you are standing and then to the next locator circle
-        id: 'path',
-        polylineRad: [[3.101, -0.344], [5.494, -1.5], [1.5, -0.334]], // path coodinates using long/ lat
-        hideList: true, // remove the path marker from the markers list 
-        svgStyle: { stroke: 'rgba(255, 255, 255, 0.4)', strokeWidth: '5px', strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the path
-        style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
-        data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
-      },
-      { // circle indicating where you are standing in the panarama
-        id: 'standing here',
-        circle: 30, // size of the circle
-        longitude: 5.494, latitude: -1.5, // location of the circle in the panarama
-        hideList: true, // remove the circle from the markers list 
-        tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
-        svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle
-      },
-      { // marker for the compass to indicate where the next location is
-        id: 'forward not visible marker',
-        circle: 30, // size of the circle 
-        longitude: 1.5, latitude: -0.334, // long/ lat of the marker for the next location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
-      },
-      { // marker for the compass to indicate where the previous location is
-        id: 'backward not visible marker',
-        circle: 30,
-        longitude: 3.101, latitude: -0.344, // long/ lat of the marker for the previous location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },
       { // Wall outline 
         id: 'wall',
-        polylineRad: [[2.495, -0.106], [2.563, -0.117], [2.626, -0.12], [2.688, -0.121], [2.753, -0.122], [2.836, -0.106], [2.926, -0.089], [3.031, -0.072], [3.135, -0.068], [3.231, -0.067], [3.337, -0.073], [3.435, -0.08], [3.55, -0.098], [3.673, -0.125], [3.795, -0.134], [3.905, -0.14], [4.093, -0.152], [4.249, -0.167], [4.472, -0.188], [4.692, -0.198], [4.908, -0.207], [5.125, -0.201], [5.317, -0.204], [5.549, -0.206], [5.796, -0.205], [5.958, -0.219], [6.098, -0.23], [0.022, -0.229], [0.276, -0.234], [0.525, -0.229], [0.727, -0.236], [0.902, -0.228], [1.077, -0.209], [1.196, -0.198], [1.293, -0.194], [1.402, -0.185], [1.45, -0.18]],
+        //polylineRad: [[2.495, -0.106], [2.563, -0.117], [2.626, -0.12], [2.688, -0.121], [2.753, -0.122], [2.836, -0.106], [2.926, -0.089], [3.031, -0.072], [3.135, -0.068], [3.231, -0.067], [3.337, -0.073], [3.435, -0.08], [3.55, -0.098], [3.673, -0.125], [3.795, -0.134], [3.905, -0.14], [4.093, -0.152], [4.249, -0.167], [4.472, -0.188], [4.692, -0.198], [4.908, -0.207], [5.125, -0.201], [5.317, -0.204], [5.549, -0.206], [5.796, -0.205], [5.958, -0.219], [6.098, -0.23], [0.022, -0.229], [0.276, -0.234], [0.525, -0.229], [0.727, -0.236], [0.902, -0.228], [1.077, -0.209], [1.196, -0.198], [1.293, -0.194], [1.402, -0.185], [1.45, -0.18]],
+        polylineRad: [[3.029, -0.183], [2.93, -0.188], [2.781, -0.189], [2.673, -0.201], [2.598, -0.211], [2.388, -0.229], [2.11, -0.244], [1.745, -0.256], [1.42, -0.254], [1.273, -0.242], [0.978, -0.226], [0.556, -0.234], [0.024, -0.2], [5.927, -0.163], [5.423, -0.111], [5.207, -0.097], [4.951, -0.066], [4.764, -0.049], [4.582, -0.032], [4.485, -0.044], [4.397, -0.06], [4.304, -0.089], [4.254, -0.11], [4.206, -0.119]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Wall outline 
+        id: 'wall2',
+        polylineRad: [[3.715, -0.068], [3.811, -0.085], [3.886, -0.099], [3.965, -0.107], [4.031, -0.111], [4.1, -0.115], [4.167, -0.101]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
@@ -624,69 +371,42 @@ virtualTour.setNodes([
         id: 'info',
         listContent: 'Materials & techniques for buildings a family unit',
         image: infoOrange,
-        longitude: 2.117, latitude: -0.325,
+        //longitude: 2.117, latitude: -0.325,
+        longitude: 3.685, latitude: -0.241,
         width: 50, height: 50,
         anchor: 'bottom center',
+        data: { compass: 'rgba(252, 191, 22, 1)' },
         tooltip: { content: 'What materials & techniques were used to build a family unit?', position: 'top center', trigger: 'hover' },
         content: document.getElementById('materials').innerHTML
-      }
-    ],
+      }],
+    position: [-25.625545148313936, 26.630811488833448, 3],
+    panoData: { poseHeading: 90 },
   },
 
-  { /* node 8 */
+  { /*Location 8*/
     id: '8',
-    panorama: location_8, // panerama image link
-    thumbnail: location_8_thumbnail, // thumbnail image link
-    name: 'Location Eight', // set the name of the panerama in the nodeslist 
-    caption: 'Location Eight', // set the caption
-
+    panorama: location_8,
+    thumbnail: location_8_thumbnail,
+    name: 'Location Eight',
+    caption: 'Location Eight',
     links: [
-      { // link to the previous location, location 7
-        nodeId: '7', longitude: 4.483, latitude: -0.193, name: 'Move Back to here',
-        markerStyle: { svgStyle: { fill: 'rgba(200, 0, 50, 0.6)', stroke: 'rgba(200, 0, 50, 0.6)', strokeWidth: '5px' } } 
-      },
-
-      { // link to the next location, location 9
-        nodeId: '9', longitude: 1.661, latitude: -0.262, name: 'Move Forward to here',
-        markerStyle: { svgStyle: { fill: 'rgba(0, 255, 0, 0.4)', stroke: 'rgba(0, 255, 0, 0.4)', strokeWidth: '5px' } }   
-      }
+      { nodeId: '9' },
+      { nodeId: '7' },
     ],
     markers: [
-      { // create a path between from the indicator to the previous location to where you are standing and then to the next locator circle
-        id: 'path',
-        polylineRad: [[4.483, -0.193], [5.494, -1.5], [1.661, -0.262]], // path coodinates using long/ lat
-        hideList: true, // remove the path marker from the markers list 
-        svgStyle: { stroke: 'rgba(255, 255, 255, 0.4)', strokeWidth: '5px', strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the path
-        style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
-        data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
-      },
-      { // circle indicating where you are standing in the panarama
-        id: 'standing here',
-        circle: 30, // size of the circle
-        longitude: 5.494, latitude: -1.5, // location of the circle in the panarama
-        hideList: true, // remove the circle from the markers list 
-        tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
-        svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle
-      },
-      { // marker for the compass to indicate where the next location is
-        id: 'forward not visible marker',
-        circle: 30, // size of the circle 
-        longitude: 1.661, latitude: -0.262, // long/ lat of the marker for the next location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
-      },
-      { // marker for the compass to indicate where the previous location is
-        id: 'backward not visible marker',
-        circle: 30,
-        longitude: 4.483, latitude: -0.193, // long/ lat of the marker for the previous location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },
       { // Wall outline 
         id: 'wall',
-        polylineRad: [[1.387, -0.418], [1.083, -0.455], [0.838, -0.473], [0.636, -0.481], [0.418, -0.49], [0.293, -0.489], [6.119, -0.393], [5.796, -0.283], [5.583, -0.197], [5.394, -0.157], [5.253, -0.12], [5.059, -0.086], [4.898, -0.055], [4.802, -0.047], [4.739, -0.043], [4.605, -0.038], [4.515, -0.044], [4.367, -0.046], [4.228, -0.049], [4.101, -0.055], [3.995, -0.065], [3.923, -0.069], [3.798, -0.07], [3.708, -0.059], [3.591, -0.046], [3.467, -0.045], [3.373, -0.049], [3.261, -0.071], [3.147, -0.087], [3.046, -0.101], [2.976, -0.1]],
+        //polylineRad: [[1.387, -0.418], [1.083, -0.455], [0.838, -0.473], [0.636, -0.481], [0.418, -0.49], [0.293, -0.489], [6.119, -0.393], [5.796, -0.283], [5.583, -0.197], [5.394, -0.157], [5.253, -0.12], [5.059, -0.086], [4.898, -0.055], [4.802, -0.047], [4.739, -0.043], [4.605, -0.038], [4.515, -0.044], [4.367, -0.046], [4.228, -0.049], [4.101, -0.055], [3.995, -0.065], [3.923, -0.069], [3.798, -0.07], [3.708, -0.059], [3.591, -0.046], [3.467, -0.045], [3.373, -0.049], [3.261, -0.071], [3.147, -0.087], [3.046, -0.101], [2.976, -0.1]],
+        polylineRad: [[2.888, -0.456], [2.59, -0.455], [2.319, -0.43], [2.114, -0.432], [1.987, -0.453], [1.44, -0.351], [1.135, -0.269], [0.906, -0.205], [0.679, -0.135], [0.468, -0.082], [0.345, -0.05], [0.195, -0.036], [0.004, -0.028], [6.07, -0.032], [5.913, -0.037], [5.771, -0.039], [5.612, -0.034], [5.51, -0.019], [5.403, 0.001], [5.324, 0.006], [5.223, -0.006], [5.115, -0.022], [5.01, -0.031], [4.906, -0.039], [4.829, -0.06], [4.735, -0.088], [4.674, -0.111], [4.606, -0.129]],
+        hideList: true, // remove the marker from the markers list
+        scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
+        tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
+        svgStyle: { stroke: 'rgba(255, 255, 153, 0.6)', strokeWidth: 4, strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the wall
+        data: { compass: 'rgba(255, 255, 153, 1)' }
+      },
+      { // Wall outline 
+        id: 'wall2',
+        polylineRad: [[3.935, -0.14], [4.044, -0.148], [4.165, -0.15], [4.299, -0.139], [4.435, -0.104]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
@@ -697,70 +417,36 @@ virtualTour.setNodes([
         id: 'info',
         listContent: 'Who lived here?',
         image: infoOrange,
-        longitude: 1.902, latitude: -0.153,
+        //longitude: 1.902, latitude: -0.153,
+        longitude: 3.469, latitude: -0.016,
         width: 50, height: 50,
         anchor: 'bottom center',
+        data: { compass: 'rgba(252, 191, 22, 1)' },
         tooltip: { content: 'Who were the people who lived here?', position: 'top center', trigger: 'hover' },
         content: document.getElementById('wholivedhere').innerHTML
       }
     ],
-    panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
+    //position: [-25.62547593699472, 26.630824025044436, 3],
+    //position: [-25.625501934660537, 26.630742217669482, 3],
+    position: [-25.625522490950434, 26.630736853251452, 3],
+    panoData: { poseHeading: 160 },
   },
 
-  { /* node 9 */
+  { /*Location 9*/
     id: '9',
-    panorama: location_9, // panerama image link
-    thumbnail: location_9_thumbnail, // thumbnail image link
-    name: 'Location Nine', // set the name of the panerama in the nodeslist 
-    caption: 'Location Nine', // set the caption
-
+    panorama: location_9,
+    thumbnail: location_9_thumbnail,
+    name: 'Location Nine',
+    caption: 'Location Nine',
     links: [
-      { // link to the previous location, location 8
-        nodeId: '8', longitude: 0.873, latitude: -0.143, name: 'Move Back to here',
-        markerStyle: { svgStyle: { fill: 'rgba(200, 0, 50, 0.6)', stroke: 'rgba(200, 0, 50, 0.6)', strokeWidth: '5px' } }  
-      },
-
-      { // link to the next location, location 10
-        nodeId: '10', longitude: 2.039, latitude: -0.148, name: 'Move Forward to here',
-        markerStyle: { svgStyle: { fill: 'rgba(0, 255, 0, 0.4)', stroke: 'rgba(0, 255, 0, 0.4)', strokeWidth: '5px' } }    
-      }
+      { nodeId: '10' },
+      { nodeId: '8' },
     ],
     markers: [
-      { // create a path between from the indicator to the previous location to where you are standing and then to the next locator circle
-        id: 'path',
-        polylineRad: [[0.873, -0.143], [5.494, -1.5], [2.039, -0.148]], // path coodinates using long/ lat
-        hideList: true, // remove the path marker from the markers list 
-        svgStyle: { stroke: 'rgba(255, 255, 255, 0.4)', strokeWidth: '5px', strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the path
-        style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
-        data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
-      },
-      { // circle indicating where you are standing in the panarama
-        id: 'standing here',
-        circle: 30, // size of the circle
-        longitude: 5.494, latitude: -1.5, // location of the circle in the panarama
-        hideList: true, // remove the circle from the markers list 
-        tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
-        svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle
-      },
-      { // marker for the compass to indicate where the next location is
-        id: 'forward not visible marker',
-        circle: 30, // size of the circle 
-        longitude: 2.039, latitude: -0.148, // long/ lat of the marker for the next location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
-      },
-      { // marker for the compass to indicate where the previous location is
-        id: 'backward not visible marker',
-        circle: 30,
-        longitude: 0.873, latitude: -0.143, // long/ lat of the marker for the previous location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },
       { // Wall outline 
         id: 'wall',
-        polylineRad: [[1.32, -0.209], [1.392, -0.192], [1.44, -0.172], [1.471, -0.145], [1.502, -0.111], [1.505, -0.089], [1.507, -0.07], [1.493, -0.052], [1.472, -0.043], [1.432, -0.033], [1.378, -0.027], [1.333, -0.028], [1.267, -0.027], [1.179, -0.031], [1.073, -0.043], [1.001, -0.045], [0.937, -0.044], [0.875, -0.042], [0.836, -0.039], [0.803, -0.035], [0.777, -0.026], [0.744, -0.019], [0.706, -0.019], [0.666, -0.015], [0.626, -0.017], [0.572, -0.018], [0.537, -0.023], [0.501, -0.029], [0.486, -0.038], [0.479, -0.049], [0.474, -0.06]],
+        //polylineRad: [[1.32, -0.209], [1.392, -0.192], [1.44, -0.172], [1.471, -0.145], [1.502, -0.111], [1.505, -0.089], [1.507, -0.07], [1.493, -0.052], [1.472, -0.043], [1.432, -0.033], [1.378, -0.027], [1.333, -0.028], [1.267, -0.027], [1.179, -0.031], [1.073, -0.043], [1.001, -0.045], [0.937, -0.044], [0.875, -0.042], [0.836, -0.039], [0.803, -0.035], [0.777, -0.026], [0.744, -0.019], [0.706, -0.019], [0.666, -0.015], [0.626, -0.017], [0.572, -0.018], [0.537, -0.023], [0.501, -0.029], [0.486, -0.038], [0.479, -0.049], [0.474, -0.06]],
+        polylineRad: [[6.113, -0.22], [6.16, -0.204], [6.208, -0.163], [6.227, -0.121], [6.24, -0.085], [6.223, -0.064], [6.198, -0.051], [6.158, -0.036], [6.113, -0.032], [6.044, -0.025], [5.962, -0.021], [5.894, -0.02], [5.822, -0.02], [5.752, -0.024], [5.696, -0.024], [5.651, -0.021], [5.601, -0.02], [5.559, -0.012], [5.523, -0.006], [5.49, -0.006], [5.452, -0.006], [5.407, -0.008], [5.371, -0.013], [5.341, -0.022], [5.311, -0.034], [5.29, -0.048], [5.265, -0.06], [5.251, -0.071], [5.238, -0.084]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
@@ -769,7 +455,8 @@ virtualTour.setNodes([
       },
       { // Wall outline
         id: 'walls',
-        polylineRad: [[0.102, -0.081], [0.181, -0.074], [0.234, -0.069], [0.283, -0.068], [0.332, -0.06], [0.356, -0.052], [0.369, -0.039], [0.376, -0.028]],
+        //polylineRad: [[0.102, -0.081], [0.181, -0.074], [0.234, -0.069], [0.283, -0.068], [0.332, -0.06], [0.356, -0.052], [0.369, -0.039], [0.376, -0.028]],
+        polylineRad: [[4.849, -0.109], [4.947, -0.104], [5.035, -0.092], [5.097, -0.082], [5.137, -0.073], [5.166, -0.058], [5.177, -0.043]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
@@ -778,7 +465,8 @@ virtualTour.setNodes([
       },
       { // Wall outline
         id: 'wall2',
-        polylineRad: [[2.318, -0.106], [2.27, -0.09], [2.225, -0.076], [2.186, -0.059], [2.141, -0.048], [2.122, -0.039], [2.085, -0.031], [2.056, -0.028], [2.007, -0.026], [1.952, -0.027], [1.895, -0.027], [1.856, -0.025], [1.799, -0.028], [1.753, -0.029], [1.701, -0.034], [1.659, -0.041], [1.596, -0.051], [1.571, -0.057], [1.531, -0.067], [1.515, -0.076], [1.509, -0.085]],
+        //polylineRad: [[2.318, -0.106], [2.27, -0.09], [2.225, -0.076], [2.186, -0.059], [2.141, -0.048], [2.122, -0.039], [2.085, -0.031], [2.056, -0.028], [2.007, -0.026], [1.952, -0.027], [1.895, -0.027], [1.856, -0.025], [1.799, -0.028], [1.753, -0.029], [1.701, -0.034], [1.659, -0.041], [1.596, -0.051], [1.571, -0.057], [1.531, -0.067], [1.515, -0.076], [1.509, -0.085]],
+        polylineRad: [[0.76, -0.101], [0.706, -0.083], [0.655, -0.069], [0.617, -0.053], [0.565, -0.039], [0.527, -0.032], [0.484, -0.025], [0.428, -0.023], [0.383, -0.023], [0.321, -0.021], [0.247, -0.023], [0.186, -0.023], [0.145, -0.025], [0.105, -0.028], [0.059, -0.037], [0.023, -0.048], [6.278, -0.06], [6.239, -0.078]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
@@ -789,70 +477,37 @@ virtualTour.setNodes([
         id: 'info',
         listContent: 'Stonewall Construction',
         image: infoOrange,
-        longitude: 1.301, latitude: -0.437,
+        //longitude: 1.301, latitude: -0.437,
+        //longitude: 6.045, latitude: -0.346,
+        longitude: 6.067, latitude: 0.104,
         width: 50, height: 50,
         anchor: 'bottom center',
+        data: { compass: 'rgba(252, 191, 22, 1)' },
         tooltip: { content: 'How were the stonewalls constructed?', position: 'top center', trigger: 'hover' },
         content: document.getElementById('wallconstruction').innerHTML
       }
     ],
-    panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
+    //position: [-25.62547593699472, 26.630824025044436, 3],
+
+    //position: [-25.625380584530987, 26.630791313405037, 3],
+    position: [-25.625491225809068, 26.630651838536263, 3],
+    //panoData: { poseHeading: 150 },
   },
 
-  { /* node 10 */
+  { /*Location 10*/
     id: '10',
-    panorama: location_10, // panerama image link
-    thumbnail: location_10_thumbnail, // thumbnail image link
-    name: 'Location Ten', // set the name of the panerama in the nodeslist 
-    caption: 'Location Ten', // set the caption
-
+    panorama: location_10,
+    thumbnail: location_10_thumbnail,
+    name: 'Location Ten',
+    caption: 'Location Ten',
     links: [
-      { // link to the previous location, location 9
-        nodeId: '9', longitude: 5.034, latitude: -0.184, name: 'Move Back to here',
-        markerStyle: { svgStyle: { fill: 'rgba(200, 0, 50, 0.6)', stroke: 'rgba(200, 0, 50, 0.6)', strokeWidth: '5px' } }  
-      },
-
-      { // link to the next location, location 11
-        nodeId: '11', longitude: 1.753, latitude: -0.225, name: 'Move Forward to here',
-        markerStyle: { svgStyle: { fill: 'rgba(0, 255, 0, 0.4)', stroke: 'rgba(0, 255, 0, 0.4)', strokeWidth: '5px' } }    
-      }
+      { nodeId: '11' },
+      { nodeId: '9' },
     ],
     markers: [
-      { // create a path between from the indicator to the previous location to where you are standing and then to the next locator circle
-        id: 'path',
-        polylineRad: [[5.034, -0.184], [5.494, -1.5], [1.753, -0.225]], // path coodinates using long/ lat
-        hideList: true, // remove the path marker from the markers list 
-        svgStyle: { stroke: 'rgba(255, 255, 255, 0.4)', strokeWidth: '5px', strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the path
-        style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
-        data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
-      },
-      { // circle indicating where you are standing in the panarama
-        id: 'standing here',
-        circle: 30, // size of the circle
-        longitude: 5.494, latitude: -1.5, // location of the circle in the panarama
-        hideList: true, // remove the circle from the markers list 
-        tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
-        svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle
-      },
-      { // marker for the compass to indicate where the next location is
-        id: 'forward not visible marker',
-        circle: 30, // size of the circle 
-        longitude: 1.753, latitude: -0.225, // long/ lat of the marker for the next location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(0, 255, 0, 1)' } // display the move forward dot on the compass
-      },
-      { // marker for the compass to indicate where the previous location is
-        id: 'backward not visible marker',
-        circle: 30,
-        longitude: 5.034, latitude: -0.184, // long/ lat of the marker for the previous location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },
       { // Wall outline 
         id: 'wall',
-        polylineRad: [[3.171, -0.412], [2.773, -0.34], [2.472, -0.233], [2.319, -0.158], [2.175, -0.104], [2.08, -0.072], [2.015, -0.053], [1.936, -0.046], [1.838, -0.042], [1.72, -0.034], [1.655, -0.033], [1.568, -0.035], [1.5, -0.038], [1.411, -0.045], [1.301, -0.055], [1.192, -0.072], [1.061, -0.09], [0.974, -0.108], [0.857, -0.134], [0.723, -0.162], [0.542, -0.202], [0.286, -0.228], [6.258, -0.249], [5.935, -0.259], [5.866, -0.262]],
+        polylineRad: [[1.873, -0.325], [1.653, -0.356], [1.405, -0.343], [1.142, -0.273], [0.922, -0.22], [0.751, -0.161], [0.621, -0.107], [0.527, -0.074], [0.441, -0.053], [0.348, -0.052], [0.217, -0.041], [0.107, -0.039], [6.255, -0.032], [6.124, -0.029], [6.039, -0.036], [5.971, -0.043], [5.868, -0.06], [5.78, -0.082], [5.694, -0.113], [5.544, -0.152], [5.339, -0.212], [5.05, -0.258], [4.822, -0.278], [4.551, -0.262], [4.33, -0.259]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
@@ -861,7 +516,7 @@ virtualTour.setNodes([
       },
       { // Wall outline
         id: 'walls',
-        polylineRad: [[0.713, -0.157], [0.764, -0.131], [0.809, -0.106], [0.84, -0.08], [0.846, -0.056], [0.832, -0.04], [0.806, -0.032], [0.773, -0.024], [0.729, -0.026], [0.674, -0.029], [0.609, -0.029], [0.54, -0.031], [0.47, -0.032], [0.408, -0.03], [0.355, -0.026], [0.308, -0.018], [0.271, -0.011], [0.228, -0.01], [0.183, -0.011], [0.142, -0.011], [0.097, -0.014], [0.065, -0.016], [0.021, -0.021], [6.265, -0.029], [6.237, -0.034], [6.209, -0.04], [6.198, -0.041]],
+        polylineRad: [[5.218, -0.226], [5.401, -0.155], [5.469, -0.116], [5.533, -0.081], [5.546, -0.055], [5.53, -0.037], [5.506, -0.027], [5.476, -0.023], [5.429, -0.022], [5.36, -0.028], [5.308, -0.03], [5.24, -0.033], [5.183, -0.03], [5.123, -0.03], [5.061, -0.021], [5.014, -0.009], [4.964, -0.001], [4.92, -0.001], [4.875, -0.001], [4.836, -0.008], [4.792, -0.017], [4.751, -0.02], [4.704, -0.023], [4.665, -0.032], [4.645, -0.045], [4.617, -0.052]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
@@ -872,57 +527,36 @@ virtualTour.setNodes([
         id: 'info',
         listContent: 'Settlement purpose',
         image: infoOrange,
-        longitude: 1.403, latitude: -0.214,
+        //longitude: 1.403, latitude: -0.214,
+        longitude: 6.008, latitude: -0.17,
         width: 50, height: 50,
         anchor: 'bottom center',
+        data: { compass: 'rgba(252, 191, 22, 1)' },
         tooltip: { content: 'What was the purpose of the settlement?', position: 'top center', trigger: 'hover' },
         content: document.getElementById('purpose').innerHTML
       }
     ],
-    panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
+    //position: [-25.62547593699472, 26.630824025044436, 3],
+    //position: [-25.625380584530987, 26.630791313405037, 3],
+    //position: [-25.625380584530987, 26.630791313405037, 3],
+    position: [-25.62531975942269, 26.63086145882607, 3],
+    //panoData: { poseHeading: 90 },
   },
 
-  { /* node 11 */
+  {/*Location 11*/
     id: '11',
-    panorama: location_11, // panerama image link
-    thumbnail: location_11_thumbnail, // thumbnail image link
-    name: 'Location Eleven', // set the name of the panerama in the nodeslist 
-    caption: 'Location Eleven', // set the caption
-
+    panorama: location_11,
+    thumbnail: location_11_thumbnail,
+    name: 'Location Eleven',
+    caption: 'Location Eleven',
     links: [
-      { // link to the previous location, location 10
-        nodeId: '10', longitude: 4.948, latitude: -0.141, name: 'Move Back to here',
-        markerStyle: { svgStyle: { fill: 'rgba(200, 0, 50, 0.6)', stroke: 'rgba(200, 0, 50, 0.6)', strokeWidth: '5px' } }  
-      }
+      { nodeId: '10' },
     ],
     markers: [
-      {
-        id: 'path',
-        polylineRad: [[4.948, -0.141], [5.494, -1.5]], // path coodinates using long/ lat
-        hideList: true, // remove the path marker from the markers list 
-        svgStyle: { stroke: 'rgba(255, 255, 255, 0.4)', strokeWidth: '5px', strokeLinecap: 'round', strokeLinejoin: 'round' }, // set the style of the path
-        style: { cursor: 'move' }, // set cursor to display a 'move' cursor when hovering over the path
-        data: { compass: 'rgba(255, 255, 255, 0.7)' } // display path on compass
-      },
-      { // circle indicating where you are standing in the panarama
-        id: 'standing here',
-        circle: 30, // size of the circle
-        longitude: 5.494, latitude: -1.5, // location of the circle in the panarama
-        hideList: true, // remove the circle from the markers list 
-        tooltip: { content: 'You are here', position: 'top center', trigger: 'hover' }, // set the tooltip for the user 
-        svgStyle: { fill: 'rgba(255, 255, 255, 0.5)' }, // set the style of the circle
-      },
-      { // marker for the compass to indicate where the previous location is
-        id: 'backward not visible marker',
-        circle: 30,
-        longitude: 4.948, latitude: -0.141, // long/ lat of the marker for the previous location in the panarama
-        hideList: true, // remove the marker from the markers list
-        visible: false, // set the marker to not be visible, only will show in the compass
-        data: { compass: 'rgba(200, 0, 50, 1)' } // display the move backward dot on the compass
-      },
       { // Wall outline 
         id: 'wall',
-        polylineRad: [[4.393, -0.12], [4.339, -0.179], [4.218, -0.209], [4.059, -0.212], [3.855, -0.208], [3.737, -0.203], [3.59, -0.208], [3.427, -0.237], [3.201, -0.294], [2.758, -0.298], [2.411, -0.254], [2.055, -0.218], [1.766, -0.178], [1.486, -0.164], [1.144, -0.139], [0.904, -0.132], [0.741, -0.137], [0.554, -0.147], [0.33, -0.155], [6.276, -0.143], [5.987, -0.137], [5.761, -0.131], [5.545, -0.111], [5.439, -0.1], [5.338, -0.079]],
+        //polylineRad: [[4.393, -0.12], [4.339, -0.179], [4.218, -0.209], [4.059, -0.212], [3.855, -0.208], [3.737, -0.203], [3.59, -0.208], [3.427, -0.237], [3.201, -0.294], [2.758, -0.298], [2.411, -0.254], [2.055, -0.218], [1.766, -0.178], [1.486, -0.164], [1.144, -0.139], [0.904, -0.132], [0.741, -0.137], [0.554, -0.147], [0.33, -0.155], [6.276, -0.143], [5.987, -0.137], [5.761, -0.131], [5.545, -0.111], [5.439, -0.1], [5.338, -0.079]],
+        polylineRad: [[2.747, -0.045], [2.729, -0.082], [2.697, -0.106], [2.643, -0.155], [2.566, -0.186], [2.495, -0.198], [2.352, -0.219], [2.116, -0.251], [1.862, -0.309], [1.486, -0.368], [1.204, -0.38], [0.664, -0.318], [0.464, -0.28], [0.149, -0.22], [6.199, -0.188], [6.026, -0.172], [5.814, -0.154], [5.627, -0.139], [5.338, -0.134], [5.05, -0.146], [4.804, -0.155], [4.61, -0.155], [4.324, -0.143], [4.115, -0.132], [3.905, -0.11], [3.74, -0.093], [3.563, -0.069]],
         hideList: true, // remove the marker from the markers list
         scale: { zoom: [0.5, 1] }, // the wall is twice smaller on the minimum zoom level
         tooltip: { content: 'Wall Outline', position: 'top center', trigger: 'hover' },
@@ -933,13 +567,16 @@ virtualTour.setNodes([
         id: 'info',
         listContent: 'Settlement activities',
         image: infoOrange,
-        longitude: 0.897, latitude: -0.137,
+        //longitude: 0.897, latitude: -0.137,
+        longitude: 5.863, latitude: -0.32,
         width: 50, height: 50,
         anchor: 'bottom center',
+        data: { compass: 'rgba(252, 191, 22, 1)' },
         tooltip: { content: 'Where did settlement activities happen?', position: 'top center', trigger: 'hover' },
         content: document.getElementById('activities').innerHTML
       }
     ],
-    panoData: { poseHeading: 90 }, // change the initial direction of the panarama 
-  },
+    position: [-25.625313491817554, 26.63097271221637, 3],
+    //panoData: { poseHeading: 90 },
+  }
 ],);
