@@ -42,7 +42,7 @@ var location_11_thumbnail = 'https://i.ibb.co/DDzZMHd/GS-0129-edited.jpg';
 const viewer = new PhotoSphereViewer.Viewer({
   container: 'photosphere',
   loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
-  touchmoveTwoFingers: true,
+  touchmoveTwoFingers: false,
   mousewheelCtrlKey: false,
   defaultZoomLvl: 0,
   plugins: [
